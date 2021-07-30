@@ -38,3 +38,7 @@ Panopticon と言うプロダクトは、
   - 対話的コマンドラインインターフェース
     - Inquirer.js
       - https://github.com/SBoudrias/Inquirer.js
+      - https://www.npmjs.com/package/@types/inquirer
+  - DataBase
+    - ORM で、Prisma を検討
+    - https://zenn.dev/kanasugi/articles/a082bd39c5bdf2
