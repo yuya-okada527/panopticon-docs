@@ -42,3 +42,4 @@ Panopticon と言うプロダクトは、
   - DataBase
     - ORM で、Prisma を検討
     - https://zenn.dev/kanasugi/articles/a082bd39c5bdf2
+- 言語は、TypeScript で実装する
