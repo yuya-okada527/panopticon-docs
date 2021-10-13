@@ -1,3 +1,7 @@
 {
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "all",
+  "editor.wordWrap": "on",
+  "files.insertFinalNewline": true,
   "editor.tabSize": 2
 }
