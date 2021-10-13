@@ -1,6 +1,6 @@
 run:
 	uvicorn src.app.main:app --reload
 lint:
-	pysen run lint
+	poetry run pysen run lint
 format:
-	pysen run format
+	poetry run pysen run format
