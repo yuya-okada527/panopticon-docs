@@ -1,6 +1,11 @@
 {
   "name": "panopticon",
   "private": true,
+  "lint-staged": {
+    "*.py": [
+      "cd api && make format && cd .."
+    ]
+  },
   "devDependencies": {
     "husky": "^7.0.2",
     "lint-staged": "^11.2.3"
