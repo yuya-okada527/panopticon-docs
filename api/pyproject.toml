@@ -25,7 +25,7 @@ mypy_preset = "strict"
 line_length = 88
 py_version = "py38"
 [[tool.pysen.lint.mypy_targets]]
-  paths = ["."]
+  paths = ["./src/app"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
