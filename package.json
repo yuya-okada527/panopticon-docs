@@ -1,4 +1,8 @@
 {
   "name": "panopticon",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.3"
+  }
 }
