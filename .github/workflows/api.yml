@@ -13,6 +13,7 @@ jobs:
   check:
     name: Check the source code
     runs-on: ubuntu-latest
+    working-directory: ./api
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,7 +28,9 @@ jobs:
         run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
       - name: Install Dependencies
         run: poetry install
-        working-directory: ./api
-      - name: lint
+        # working-directory: ./api
+      - name: Lint
         run: make lint
-        working-directory: ./api
+        # working-directory: ./api
+      - name: Test
+        run: make test
