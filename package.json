@@ -1,6 +1,9 @@
 {
   "name": "panopticon",
   "private": true,
+  "scripts": {
+    "prepare": "husky install"
+  },
   "lint-staged": {
     "*.py": [
       "cd api && make format && cd .."
