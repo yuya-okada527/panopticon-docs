@@ -2,44 +2,41 @@
 
 ## Why we are here?
 
-自分自身の行動を記録し、改善するための簡易的なツールが欲しかったため
+自分自身のタスクの実施状況を記録し、改善するための簡易的なツールが欲しかったため
 
 ## Elevator pitch
 
-自分自身の行動を記録し、改善したい
+自分自身のタスク実施状況を記録し、改善したい
 自分向けの
 Panopticon と言うプロダクトは、
 セルフモニタリングツールである。
-これは、行動の履歴を記録することができ、
+これは、タスク実施の履歴を記録することができ、
 クラウドベースの TODO アプリと違い、ローカル PC 内で完結しているため、セキュリティ上のリスクが低い。
 また、Excel などより簡易的で、可搬性と拡張性に優れるツールである。
 
-## Todo List
-
-### Todo
-
-- 行動履歴を追加する
-- 行動履歴を編集する
-- 行動履歴を表示する
-  - 履歴一覧を表示する
-  - ベロシティをグラフで描画する
-
-### Not Todo
-
-- 凝った GUI
-
-### TBD
-
-- 行動履歴の削除機能
-
 ## Solution
 
-- 対話的コマンドラインインターフェースと sqlite をベースとする
-  - 対話的コマンドラインインターフェース
-    - Inquirer.js
-      - https://github.com/SBoudrias/Inquirer.js
-      - https://www.npmjs.com/package/@types/inquirer
-  - DataBase
-    - ORM で、Prisma を検討
-    - https://zenn.dev/kanasugi/articles/a082bd39c5bdf2
-- 言語は、TypeScript で実装する
+### アプリケーションの構成
+
+- API
+  - フレームワーク: Ruby on Rails
+  - データベース: MySQL
+  - DB スキーマ管理: ridgepole
+    - https://github.com/ridgepcole/ridgepole
+  - HTTP クライアント: faraday
+    - https://github.com/lostisland/faraday
+  - テストフレームワーク: Rspec
+  - シード作成: factory-bot
+  - ドキュメント: OpenAPI (具体的な方針は検討)
+  - 静的解析: 要検討
+- フロント
+  - フレームワーク: Nuxt.js
+  - 状態管理: vuex
+  - UI 構築: SCSS
+  - HTTP クライアント: axios
+  - テストフレームワーク: jest
+  - 静的解析: ESLint
+  - フォーマッター: Prettier
+- BI ツール
+  - metabase
+    - https://www.metabase.com/
