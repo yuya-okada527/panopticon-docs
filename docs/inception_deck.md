@@ -29,6 +29,8 @@ Panopticon と言うプロダクトは、
   - シード作成: factory-bot
   - ドキュメント: OpenAPI (具体的な方針は検討)
   - 静的解析: 要検討
+- バッチ
+  - API として、実装して Lambda から実行する
 - フロント
   - フレームワーク: Nuxt.js
   - 状態管理: vuex
