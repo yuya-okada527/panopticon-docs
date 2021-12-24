@@ -1,3 +1,3 @@
 # Panopticon Docs
 
-セルフモニタリングツール「Panopticon」のドキュメントを管理する。
+セルフモニタリングツール「Panopticon」のドキュメント。
