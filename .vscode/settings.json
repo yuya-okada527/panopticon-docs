@@ -3,5 +3,7 @@
   "editor.renderWhitespace": "all",
   "editor.wordWrap": "on",
   "files.insertFinalNewline": true,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "plantuml.server": "http://localhost:8080",
+  "plantuml.render": "PlantUMLServer"
 }
