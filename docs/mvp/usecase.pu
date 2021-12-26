@@ -1,35 +1,64 @@
 @startuml MVP
+' 設定
 left to right direction
 skinparam actorStyle awesome
 skinparam usecase {
   BackgroundColor DarkSeaGreen
   BorderColor DarkSlateGray
 }
+' ユースケース
+usecase タスクを登録する
+usecase タスクを編集する
+usecase タスクを参照する
+usecase タスクの一覧を参照する
+usecase タスク状況をタスクプロバイダーと同期する
 
-rectangle タスク登録 {
-  usecase タスク情報入力
-  usecase タスク登録実行
+' 画面
+rectangle タスク登録画面 {
+  usecase タスク名を入力できる
+  usecase タスク概要を入力できる
+  usecase タスクを登録できる
 }
-rectangle タスク編集 {
-  usecase タスク情報編集
-  usecase タスクステータス更新
+rectangle タスク編集画面 {
+  usecase タスク名を変更できる
+  usecase タスク概要を編集できる
+  usecase タスクのステータスを更新できる
+  usecase タスクの編集を確定できる
 }
-rectangle タスク参照 {
-  usecase タスク情報参照
+rectangle タスク詳細画面 {
+  usecase タスク名を参照できる
+  usecase タスク概要を参照できる
+  usecase タスク概要をMarkdownで表示できる
+  usecase タスク編集画面に遷移できる
 }
-rectangle タスク一覧 {
-  usecase タスク一覧参照
+rectangle タスク一覧画面 {
+  usecase ステータスごとにタスク一覧が確認できる
+  usecase タスクのステータスを更新できる
+  usecase タスク登録画面に遷移できる
+  usecase タスク状況をタスクプロバイダーと同期できる
 }
+
+' アクター
 actor ユーザ
-ユーザ --> タスク登録
-ユーザ --> タスク編集
-ユーザ --> タスク参照
-ユーザ --> タスク一覧
+ユーザ --> タスクを登録する
+ユーザ --> タスクを編集する
+ユーザ --> タスクを参照する
+ユーザ --> タスクの一覧を参照する
+ユーザ --> タスク状況をタスクプロバイダーと同期する
+
+タスクを登録する --> タスク登録画面
+タスクを編集する --> タスク編集画面
+タスクを参照する --> タスク詳細画面
+タスクの一覧を参照する --> タスク一覧画面
+タスク状況をタスクプロバイダーと同期する --> タスク一覧画面
 
 actor タスク管理API
-タスク登録 --> タスク管理API
-タスク編集 --> タスク管理API
-タスク参照 --> タスク管理API
-タスク一覧 --> タスク管理API
+タスク登録画面 --> タスク管理API
+タスク編集画面 --> タスク管理API
+タスク詳細画面 --> タスク管理API
+タスク一覧画面 --> タスク管理API
+
+actor タスクプロバイダー
+タスク管理API --> タスクプロバイダー
 
 @enduml
