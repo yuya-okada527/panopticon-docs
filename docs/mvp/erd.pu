@@ -3,7 +3,7 @@
 !include tables.pu
 
 projects ||--o{ tasks
-projects ||--o{ task_providers
+projects ||-r-o{ task_providers
 tasks ||--o{ task_status_histories
 task_providers ||--o{ tasks
 
