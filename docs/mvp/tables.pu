@@ -1,0 +1,26 @@
+@startuml テーブル一覧
+
+package "Database" <<Database>> {
+  entity "タスク" as tasks {
+    + ID [PK]
+    --
+    外部ID
+    タスク名
+    タスク概要
+    ステータス
+    更新日時
+    作成日時
+  }
+  entity "タスクステータス履歴" as task_status_histories {
+    + ID [PK]
+    --
+    タスクID
+    遷移前ステータス
+    遷移後ステータス
+    更新日時
+    作成日時
+  }
+}
+
+
+@enduml

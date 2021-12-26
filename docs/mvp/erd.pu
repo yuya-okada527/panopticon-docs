@@ -1,0 +1,7 @@
+@startuml ER図
+
+!include tables.pu
+
+tasks ||--o{ task_status_histories
+
+@enduml
