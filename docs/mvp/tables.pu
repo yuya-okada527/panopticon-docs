@@ -1,0 +1,42 @@
+@startuml テーブル一覧
+
+package "Database" <<Database>> {
+  entity "projects\nプロジェクト" as projects <<M, DDAA00>> {
+    + id [PK] INT
+    --
+    name VARCHAR(32)
+  }
+  entity "tasks\nタスク" as tasks <<M, DDAA00>> {
+    + id [PK] INT
+    --
+    project_id [FK] INT
+    task_provider_id [FK] INT
+    external_id VARCHAR(128) [外部ID]
+    name VARCHAR(32)
+    description TEXT
+    '0: created, 1: todo, 2: doing, 3: done, 4: closed
+    status INT
+    position INT
+  }
+  entity "task_status_histories\nタスクステータス履歴" as task_status_histories <<T, 00AADD>> {
+    + id [PK] INT
+    --
+    task_id [FK] INT
+    before_status INT
+    after_status INT
+    updated_at
+    created_at
+  }
+  entity "task_providers\nタスクプロバイダ" as task_providers <<M, DDAA00>> {
+    + id [PK] INT
+    --
+    project_id [FK]INT
+    name VARCHAR(32)
+    '0: user, 1: github
+    provider_kind INT
+    provider_url VARCHAR(128)
+  }
+}
+
+
+@enduml

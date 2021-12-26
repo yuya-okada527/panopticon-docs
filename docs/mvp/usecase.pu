@@ -1,0 +1,73 @@
+@startuml MVP
+' 設定
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor DarkSeaGreen
+  BorderColor DarkSlateGray
+}
+' ユースケース
+usecase タスクを登録する
+usecase タスクを編集する
+usecase タスクを参照する
+usecase タスクを管理する
+usecase タスクプロバイダを管理する
+
+' 画面
+rectangle タスク登録画面 {
+  usecase タスク名を入力できる
+  usecase タスク概要を入力できる
+  usecase タスクを登録できる
+}
+rectangle タスク編集画面 {
+  usecase タスク名を変更できる
+  usecase タスク概要を編集できる
+  usecase タスクのステータスを更新できる
+  usecase タスクの編集を確定できる
+}
+rectangle タスク詳細画面 {
+  usecase タスク名を参照できる
+  usecase タスク概要を参照できる
+  usecase タスク概要をMarkdownで表示できる
+  usecase タスク編集画面に遷移できる
+}
+rectangle タスク管理画面 {
+  usecase ステータスごとにタスク一覧が確認できる
+  usecase タスクのステータスを更新できる
+  usecase タスクの順番を入れ替えできる
+  usecase タスク登録画面に遷移できる
+  usecase タスク詳細画面に遷移できる
+  usecase タスク名で検索することができる
+}
+rectangle タスクプロバイダ管理画面 {
+  usecase タスクプロバイダの一覧を確認できる
+  usecase タスクプロバイダを追加できる
+  usecase タスクプロバイダを削除する
+  usecase タスクプロバイダとタスクを同期する
+}
+
+' アクター
+actor ユーザ
+ユーザ --> タスクを登録する
+ユーザ --> タスクを編集する
+ユーザ --> タスクを参照する
+ユーザ --> タスクを管理する
+ユーザ --> タスクプロバイダを管理する
+
+タスクを登録する --> タスク登録画面
+タスクを編集する --> タスク編集画面
+タスクを参照する --> タスク詳細画面
+タスクを管理する --> タスク管理画面
+タスクプロバイダを管理する --> タスクプロバイダ管理画面
+
+actor タスク管理API
+タスク登録画面 --> タスク管理API
+タスク編集画面 --> タスク管理API
+タスク詳細画面 --> タスク管理API
+タスク管理画面 --> タスク管理API
+タスクプロバイダ管理画面 --> タスク管理API
+
+actor タスクプロバイダ
+タスク管理API --> タスクプロバイダ
+
+@enduml
