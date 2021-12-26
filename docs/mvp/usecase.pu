@@ -1,0 +1,35 @@
+@startuml MVP
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor DarkSeaGreen
+  BorderColor DarkSlateGray
+}
+
+rectangle タスク登録 {
+  usecase タスク情報入力
+  usecase タスク登録実行
+}
+rectangle タスク編集 {
+  usecase タスク情報編集
+  usecase タスクステータス更新
+}
+rectangle タスク参照 {
+  usecase タスク情報参照
+}
+rectangle タスク一覧 {
+  usecase タスク一覧参照
+}
+actor ユーザ
+ユーザ --> タスク登録
+ユーザ --> タスク編集
+ユーザ --> タスク参照
+ユーザ --> タスク一覧
+
+actor タスク管理API
+タスク登録 --> タスク管理API
+タスク編集 --> タスク管理API
+タスク参照 --> タスク管理API
+タスク一覧 --> タスク管理API
+
+@enduml
