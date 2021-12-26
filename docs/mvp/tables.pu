@@ -16,7 +16,6 @@ package "Database" <<Database>> {
     description TEXT
     '0: created, 1: todo, 2: doing, 3: done, 4: closed
     status INT
-    position INT
   }
   entity "task_status_histories\nタスクステータス履歴" as task_status_histories <<T, 00AADD>> {
     + id [PK] INT

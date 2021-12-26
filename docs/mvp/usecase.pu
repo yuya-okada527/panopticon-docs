@@ -34,7 +34,6 @@ rectangle タスク詳細画面 {
 rectangle タスク管理画面 {
   usecase ステータスごとにタスク一覧が確認できる
   usecase タスクのステータスを更新できる
-  usecase タスクの順番を入れ替えできる
   usecase タスク登録画面に遷移できる
   usecase タスク詳細画面に遷移できる
   usecase タスク名で検索することができる
