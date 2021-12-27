@@ -12,6 +12,7 @@ package "Database" <<Database>> {
     project_id [FK] INT
     task_provider_id [FK] INT
     external_id VARCHAR(128) [外部ID]
+    external_url VARCHAR(128) [外部URL]
     name VARCHAR(32)
     description TEXT
     '0: created, 1: todo, 2: doing, 3: done, 4: closed
