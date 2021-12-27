@@ -23,7 +23,7 @@ response
 
 request
 
-- ?status=TODO&name=hoge
+- ?status=TODO&keyword=hoge
 
 response
 
