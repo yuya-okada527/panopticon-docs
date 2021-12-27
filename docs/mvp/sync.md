@@ -52,3 +52,8 @@ Authorization: token $TOKEN
 
 - 実行を非同期化する
 - オンラインとオフラインの両方で実行できるようにする
+
+## Implementation
+
+- 外部 API の実行は、Repository パターン
+- Entity にマッピングして使う
