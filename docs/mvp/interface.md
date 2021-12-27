@@ -171,5 +171,5 @@ request
 }
 ```
 
-- DELETE /v1/projects/{project_id}/task_providers/{task_provider_id}/sync
+- DELETE /v1/projects/{project_id}/task_providers/{task_provider_id}
 - タスクプロバイダを削除する
