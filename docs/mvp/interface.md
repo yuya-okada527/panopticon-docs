@@ -164,10 +164,14 @@ response
 
 request
 
+token は、parameter じゃなくて、header で渡す
+
+header 名は、下
+X-Task-Provider-Token
+
 ```json
 {
-  "token": "token",
-  "user_name": "user name"
+  "token": "token"
 }
 ```
 

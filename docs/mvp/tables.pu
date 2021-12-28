@@ -33,8 +33,9 @@ package "Database" <<Database>> {
     project_id [FK]INT
     name VARCHAR(32)
     '0: user, 1: github
-    provider_kind INT
-    provider_url VARCHAR(128)
+    kind INT
+    organization VARCHAR
+    repository VARCHAR
   }
 }
 
