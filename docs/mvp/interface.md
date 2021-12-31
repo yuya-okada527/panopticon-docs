@@ -148,7 +148,8 @@ request
 {
   "name": "name",
   "provider_kind": "github",
-  "provider_url": "https://github.com/..."
+  "organization": "organization",
+  "repository": "repository"
 }
 ```
 
