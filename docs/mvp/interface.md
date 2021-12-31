@@ -172,7 +172,7 @@ X-Task-Provider-Token
 
 ```json
 {
-  "token": "token"
+  "user_name": "user_name"
 }
 ```
 
