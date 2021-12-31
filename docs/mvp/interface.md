@@ -88,7 +88,8 @@ request
 ```json
 {
   "name": "name",
-  "description": "description"
+  "description": "description",
+  "status": "todo"
 }
 ```
 
