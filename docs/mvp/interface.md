@@ -108,8 +108,8 @@ request
 
 ```json
 {
-  "before_status": 1,
-  "after_status": 2
+  "before_status": "todo",
+  "after_status": "doing"
 }
 ```
 
