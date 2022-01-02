@@ -1,6 +1,6 @@
 version: "3.7"
 services:
-  api:
+  panopticon-api:
     stdin_open: true
     tty: true
     build: .
@@ -33,11 +33,11 @@ services:
     ports:
       - 8888:80
     depends_on:
-      - db
+      - panopticon-db
     links:
-      - db:db
+      - panopticon-db:panopticon-db
     environment:
-      PMA_HOST: "db"
+      PMA_HOST: "panopticon-db"
       PMA_PORT: 3306
       PMA_USER: root
       PMA_PASSWORD: pass
