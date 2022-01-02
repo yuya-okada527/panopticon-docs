@@ -5,9 +5,9 @@
     </div>
     <ul class="cards">
       <li v-for="project in state.projects">
-        <div class="card">
+        <NuxtLink :to="`/${project.id}/tasks`" class="card">
           {{ project.name }}
-        </div>
+        </NuxtLink>
       </li>
     </ul>
     <div class="card">
