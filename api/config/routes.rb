@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # Projects API
   get '/v1/projects', to: 'v1/projects#projects_get'
   post '/v1/projects', to: 'v1/projects#projects_post'
+  delete '/v1/projects/:project_id', to: 'v1/projects#projects_project_id_delete'
 
   # Tasks API
   get '/v1/projects/:project_id/tasks', to: 'v1/tasks#tasks_get'
