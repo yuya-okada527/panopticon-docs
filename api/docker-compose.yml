@@ -41,5 +41,3 @@ services:
       PMA_PORT: 3306
       PMA_USER: root
       PMA_PASSWORD: pass
-# volumes:
-# mysql_data:
