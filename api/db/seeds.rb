@@ -14,6 +14,15 @@ project = Project.new(name: "Local Project")
 project.save!
 
 # タスクプロバイダ
+task_provider = TaskProvider.new(
+  project_id: project.id,
+  name: "Panopticon",
+  provider_kind: 1,
+  organization: "yuya-okada527",
+  repository: "panopticon"
+)
+task_provider.save!
+
 api_task_provider = TaskProvider.new(
   project_id: project.id,
   name: "Panopticon API",
