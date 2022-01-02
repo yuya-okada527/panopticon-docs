@@ -18,3 +18,4 @@
 
 - API: http://localhost:3000
 - DB クライアント: http://localhost:8888
+- Metabase: http://localhost:3300
