@@ -21,18 +21,13 @@ services:
       - 3306:3306
     # volumes:
     #   - mysql_data:/var/lib/mysql
-  metabse-db:
-    image: mysql:5.7
-    environment:
-      MYSQL_USER: user
-      MYSQL_ROOT_PASSWORD: pass
-    ports:
-      - 3307:3306
   metabase:
     image: metabase/metabase:latest
     container_name: metabase
     ports:
-      - 3000:3000
+      - 3300:3000
+    volumes:
+      - ./metabase/data:/metabase.db:cached
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     ports:
