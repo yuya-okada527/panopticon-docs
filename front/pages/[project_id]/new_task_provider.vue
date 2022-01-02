@@ -44,6 +44,7 @@ import ApiUrls from "~~/network/static/api-urls";
 export default defineComponent({
   async setup() {
     const route = useRoute();
+    const config = useRuntimeConfig();
     const state = reactive({
       name: "",
       kind: "",
@@ -52,15 +53,18 @@ export default defineComponent({
     });
 
     const onClickAddButton = async () => {
-      await useFetch(ApiUrls.getTaskProvidersUrl(route.params.project_id), {
-        method: "POST",
-        body: {
-          name: state.name,
-          provider_kind: "github",
-          organization: state.organization,
-          repository: state.repository,
-        },
-      });
+      await useFetch(
+        ApiUrls.getTaskProvidersUrl(config.API_URL, route.params.project_id),
+        {
+          method: "POST",
+          body: {
+            name: state.name,
+            provider_kind: "github",
+            organization: state.organization,
+            repository: state.repository,
+          },
+        }
+      );
       state.name = "";
       state.kind = "";
       state.organization = "";

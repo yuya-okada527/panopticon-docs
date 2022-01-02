@@ -28,6 +28,7 @@ export default defineComponent({
   },
   async setup(props) {
     const route = useRoute();
+    const config = useRuntimeConfig();
     const state = reactive({
       provider: props.provider,
       token: "",
@@ -36,6 +37,7 @@ export default defineComponent({
     const sync = async () => {
       await useFetch(
         ApiUrls.getTaskProviderSyncUrl(
+          config.API_URL,
           route.params.project_id,
           props.provider.id
         ),
@@ -54,7 +56,11 @@ export default defineComponent({
     };
     const deleteProvider = async () => {
       await useFetch(
-        ApiUrls.getTaskProviderUrl(route.params.project_id, props.provider.id),
+        ApiUrls.getTaskProviderUrl(
+          config.API_URL,
+          route.params.project_id,
+          props.provider.id
+        ),
         {
           method: "DELETE",
         }

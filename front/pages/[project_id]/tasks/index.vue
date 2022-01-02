@@ -56,8 +56,9 @@ export default defineComponent({
   async setup() {
     const route = useRoute();
     const router = useRouter();
+    const config = useRuntimeConfig();
     const { data: tasks } = await useFetch(
-      ApiUrls.getTasksUrl(route.params.project_id)
+      ApiUrls.getTasksUrl(config.API_URL, route.params.project_id)
     );
     // @ts-ignore
     const createdTasks = tasks.value.filter(
@@ -82,7 +83,11 @@ export default defineComponent({
         (t) => t.id === Number(event.dataTransfer.getData("task-id"))
       )[0];
       await useFetch(
-        ApiUrls.getTaskStatusUrl(route.params.project_id, targetTask.id),
+        ApiUrls.getTaskStatusUrl(
+          config.API_URL,
+          route.params.project_id,
+          targetTask.id
+        ),
         {
           method: "PUT",
           body: {

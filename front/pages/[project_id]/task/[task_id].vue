@@ -49,8 +49,13 @@ type State = {
 export default defineComponent({
   async setup() {
     const route = useRoute();
+    const config = useRuntimeConfig();
     const { data: task } = await useFetch(
-      ApiUrls.getTaskUrl(route.params.project_id, route.params.task_id)
+      ApiUrls.getTaskUrl(
+        config.API_URL,
+        route.params.project_id,
+        route.params.task_id
+      )
     );
     const state: State = reactive({
       task: task.value,
@@ -58,7 +63,11 @@ export default defineComponent({
     });
     const onUpdateIconClick = async () => {
       await useFetch(
-        ApiUrls.getTaskUrl(route.params.project_id, route.params.task_id),
+        ApiUrls.getTaskUrl(
+          config.API_URL,
+          route.params.project_id,
+          route.params.task_id
+        ),
         {
           method: "PUT",
           body: {

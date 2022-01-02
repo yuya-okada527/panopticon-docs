@@ -24,8 +24,9 @@ export default defineComponent({
   async setup() {
     const route = useRoute();
     const router = useRouter();
+    const config = useRuntimeConfig();
     const { data: taskProviders } = await useFetch(
-      ApiUrls.getTaskProvidersUrl(route.params.project_id)
+      ApiUrls.getTaskProvidersUrl(config.API_URL, route.params.project_id)
     );
     const state: State = {
       taskProviders: taskProviders.value,

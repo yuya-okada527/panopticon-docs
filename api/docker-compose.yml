@@ -11,8 +11,8 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - db
-  db:
+      - panopticon-db
+  panopticon-db:
     image: mysql:5.7
     environment:
       MYSQL_USER: user

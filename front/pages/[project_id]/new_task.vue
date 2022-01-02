@@ -37,18 +37,22 @@ import ApiUrls from "~~/network/static/api-urls";
 export default defineComponent({
   async setup() {
     const route = useRoute();
+    const config = useRuntimeConfig();
     const state = reactive({
       name: "",
       description: "",
     });
     const createTask = async () => {
-      await useFetch(ApiUrls.getTasksUrl(route.params.project_id), {
-        method: "POST",
-        body: {
-          name: state.name,
-          description: state.description,
-        },
-      });
+      await useFetch(
+        ApiUrls.getTasksUrl(config.API_URL, route.params.project_id),
+        {
+          method: "POST",
+          body: {
+            name: state.name,
+            description: state.description,
+          },
+        }
+      );
       state.name = "";
       state.description = "";
     };
