@@ -10,6 +10,13 @@
         </div>
       </li>
     </ul>
+    <div class="card">
+      <form>
+        <label for="project-name">Name: </label>
+        <input v-model="state.name" type="text" />
+        <AddButton @click="onClickAddButton" />
+      </form>
+    </div>
   </div>
 </template>
 
@@ -17,6 +24,7 @@
 import ApiUrls from "~~/network/static/api-urls";
 
 type State = {
+  name: string;
   projects: any;
 };
 
@@ -27,11 +35,23 @@ export default defineComponent({
       ApiUrls.getProjectsUrl(config.API_URL)
     );
     const state: State = {
+      name: "",
       projects: projects.value,
+    };
+    const onClickAddButton = async () => {
+      await useFetch(ApiUrls.getProjectsUrl(config.API_URL), {
+        method: "POST",
+        body: {
+          name: state.name,
+        },
+      });
+      state.name = "";
+      location.reload();
     };
 
     return {
       state,
+      onClickAddButton,
     };
   },
 });
