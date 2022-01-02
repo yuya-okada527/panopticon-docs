@@ -2,7 +2,7 @@
 
 ## プロジェクト一覧
 
-- /v1/projects
+- GET /v1/projects
 - プロジェクト一覧を返す
 
 response
@@ -14,6 +14,17 @@ response
     "name": "name"
   }
 ]
+```
+
+- POST /v1/projects
+- プロジェクトを作成する
+
+request
+
+```json
+{
+  "name": "name"
+}
 ```
 
 ## タスク一覧
