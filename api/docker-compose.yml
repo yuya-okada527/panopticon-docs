@@ -27,7 +27,7 @@ services:
     ports:
       - 3300:3000
     volumes:
-      - ./metabase/data:/metabase.db:cached
+      - ./docker/metabase/data:/metabase.db:cached
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     ports:
@@ -41,3 +41,20 @@ services:
       PMA_PORT: 3306
       PMA_USER: root
       PMA_PASSWORD: pass
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui
+    ports:
+      - 8011:8080
+    volumes:
+      - ./docker/openapi/merged.yaml:/usr/share/nginx/html/merged.yaml
+    environment:
+      API_URL: merged.yaml
+  swagger-merger:
+    build: ./docker/swagger-merger
+    volumes:
+      - ./docker/swagger-merger/watch.js:/watch.js
+      - ./docker/openapi:/data
+    environment:
+      NODE_PATH: /usr/local/lib/node_modules
+    entrypoint: node /watch
