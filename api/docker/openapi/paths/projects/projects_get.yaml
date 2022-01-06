@@ -1,0 +1,10 @@
+get:
+  operationId: projects_get
+  summary: List available projects
+  responses:
+    "200":
+      description: Returns a list of projects
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Projects"
