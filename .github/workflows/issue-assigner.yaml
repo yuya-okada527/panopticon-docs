@@ -1,4 +1,4 @@
-name: Issue Opened
+name: Issue Assigner
 
 on:
   issues:
