@@ -42,3 +42,20 @@ post:
         application/json:
           schema:
             $ref: "#/components/schemas/MutationResponse"
+put:
+  operationId: tasks_task_id_put
+  summary: Modify a task
+  tags:
+    - Tasks
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/TaskPut"
+  responses:
+    "200":
+      description: Modify a task
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MutationResponse"
