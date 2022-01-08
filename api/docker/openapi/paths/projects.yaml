@@ -1,0 +1,25 @@
+get:
+  operationId: projects_get
+  summary: List available projects
+  responses:
+    "200":
+      description: Returns a list of projects
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Projects"
+post:
+  operationId: projects_post
+  summary: Create project
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/ProjectPost"
+  responses:
+    "200":
+      description: Create a project
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MutationResponse"

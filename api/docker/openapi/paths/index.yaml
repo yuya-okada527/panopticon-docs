@@ -1,2 +1,2 @@
 /v1/projects:
-  $ref: "./projects/projects_get.yaml"
+  $ref: "./projects.yaml"

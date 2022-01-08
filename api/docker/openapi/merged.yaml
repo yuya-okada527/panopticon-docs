@@ -16,13 +16,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Projects'
+    post:
+      operationId: projects_post
+      summary: Create project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectPost'
+      responses:
+        '200':
+          description: Create a project
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutationResponse'
 components:
   schemas:
+    MutationResponse:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          format: int64
     Projects:
       type: array
       items:
-        $ref: '#/components/schemas/Project'
-    Project:
+        $ref: '#/components/schemas/ProjectGet'
+    ProjectGet:
       type: object
       required:
         - id
@@ -31,5 +54,12 @@ components:
         id:
           type: integer
           format: int64
+        name:
+          type: string
+    ProjectPost:
+      type: object
+      required:
+        - name
+      properties:
         name:
           type: string
