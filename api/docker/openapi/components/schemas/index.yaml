@@ -105,3 +105,48 @@ TaskStatusPut:
         - doing
         - done
         - closed
+
+# Task Providers
+TaskProviderGet:
+  type: object
+  required:
+    - id
+    - name
+    - provider_kind
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    provider_kind:
+      type: string
+      enum:
+        - user
+        - github
+    provider_url:
+      type: string
+TaskProviderPost:
+  type: object
+  required:
+    - name
+    - provider_kind
+  properties:
+    name:
+      type: string
+    provider_kind:
+      type: string
+      enum:
+        - user
+        - github
+    organization:
+      type: string
+    repository:
+      type: string
+TaskProviderSyncPost:
+  type: object
+  required:
+    - user_name
+  properties:
+    user_name:
+      type: string
