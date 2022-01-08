@@ -1,6 +1,8 @@
 get:
   operationId: projects_get
   summary: List available projects
+  tags:
+    - Projects
   responses:
     "200":
       description: Returns a list of projects
@@ -11,6 +13,8 @@ get:
 post:
   operationId: projects_post
   summary: Create project
+  tags:
+    - Projects
   requestBody:
     content:
       application/json:
