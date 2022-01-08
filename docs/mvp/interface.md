@@ -45,7 +45,7 @@ response
     "external_url": "https://github.com/...",
     "name": "name",
     "description": "description",
-    "status": "TODO"
+    "status": "todo"
   }
 ]
 ```
@@ -63,7 +63,7 @@ response
   "external_url": "https://github.com/...",
   "name": "name",
   "description": "description",
-  "status": "TODO"
+  "status": "todo"
 }
 ```
 
