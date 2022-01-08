@@ -35,6 +35,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MutationResponse'
+  '/v1/projects/{project_id}/tasks':
+    get:
+      operationId: tasks_get
 components:
   schemas:
     MutationResponse:
@@ -67,3 +70,31 @@ components:
       properties:
         name:
           type: string
+    Tasks:
+      type: array
+      items:
+        $ref: '#/components/schemas/TaskGet'
+    TaskGet:
+      type: object
+      required:
+        - id
+        - name
+        - status
+      properties:
+        id:
+          type: integer
+          format: int64
+        external_url:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - created
+            - todo
+            - doing
+            - done
+            - closed

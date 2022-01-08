@@ -1,8 +1,6 @@
 openapi: "3.0.0"
 info:
   $ref: "./info/index.yaml"
-tags:
-  $ref: "./tags/index.yaml"
 servers:
   - url: http://localhost:3000
 paths:
