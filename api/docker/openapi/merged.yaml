@@ -268,7 +268,41 @@ paths:
             format: int64
       responses:
         '200':
-          description: Create a task
+          description: Deleted task provider id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutationResponse'
+  '/v1/projects/{project_id}/task_providers/{task_provider_id}/sync':
+    post:
+      operationId: task_providers_task_provider_id_sync
+      summary: Sync tasks from task providers
+      tags:
+        - TaskProviders
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: task_provider_id
+          description: タスクプロバイダID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: header
+          name: X-Task-Provider-Token
+          description: タスクプロバイダ認証トークン
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Synced task provider id
           content:
             application/json:
               schema:
