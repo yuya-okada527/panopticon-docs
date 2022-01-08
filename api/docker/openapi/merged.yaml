@@ -245,6 +245,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MutationResponse'
+  '/v1/projects/{project_id}/task_providers/{task_provider_id}':
+    delete:
+      operationId: task_providers_task_provider_id_delete
+      summary: Delete a task provider
+      tags:
+        - TaskProviders
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: task_provider_id
+          description: タスクプロバイダID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Create a task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutationResponse'
 components:
   schemas:
     MutationResponse:
