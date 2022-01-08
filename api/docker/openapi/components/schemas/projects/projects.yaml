@@ -1,4 +1,0 @@
-Projects:
-  type: array
-  items:
-    $ref: "./"
