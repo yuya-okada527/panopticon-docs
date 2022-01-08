@@ -1,6 +1,13 @@
 openapi: "3.0.0"
 info:
   $ref: "./info/index.yaml"
+tags:
+  - name: Projects
+    description: About Projects
+  - name: Tasks
+    description: About Tasks
+  - name: TaskProviders
+    description: About Task Providers
 servers:
   - url: http://localhost:3000
 paths:
