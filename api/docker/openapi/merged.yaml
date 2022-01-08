@@ -2,8 +2,6 @@ openapi: 3.0.0
 info:
   version: 0.1.0
   title: Panopticon API
-  license:
-    name: Nolicense
 servers:
   - url: 'http://localhost:3000'
 paths:
