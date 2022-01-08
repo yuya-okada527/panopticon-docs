@@ -6,3 +6,5 @@
   $ref: "./tasks_task_id.yaml"
 /v1/projects/{project_id}/tasks/{task_id}/status:
   $ref: "./tasks_task_id_status.yaml"
+/v1/projects/{project_id}/task_providers:
+  $ref: "./task_providers.yaml"

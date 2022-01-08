@@ -107,6 +107,10 @@ TaskStatusPut:
         - closed
 
 # Task Providers
+TaskProviders:
+  type: array
+  items:
+    $ref: "#/components/schemas/TaskProviderGet"
 TaskProviderGet:
   type: object
   required:

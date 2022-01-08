@@ -1,0 +1,20 @@
+get:
+  operationId: task_providers_get
+  summary: List task providers
+  tags:
+    - TaskProviders
+  parameters:
+    - in: path
+      name: project_id
+      description: "プロジェクトID"
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    "200":
+      description: Returns a list of task providers
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/TaskProviders"
