@@ -25,3 +25,20 @@ get:
         application/json:
           schema:
             $ref: "#/components/schemas/TaskGet"
+post:
+  operationId: tasks_task_id_post
+  summary: Create a task
+  tags:
+    - Tasks
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/TaskPost"
+  responses:
+    "200":
+      description: Create a task
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MutationResponse"
