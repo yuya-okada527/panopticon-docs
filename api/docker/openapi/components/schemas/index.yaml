@@ -99,9 +99,9 @@ TaskStatusPut:
         - closed
     after_status:
       type: string
-        enum:
-          - created
-          - todo
-          - doing
-          - done
-          - closed
+      enum:
+        - created
+        - todo
+        - doing
+        - done
+        - closed

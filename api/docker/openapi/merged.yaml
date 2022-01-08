@@ -136,6 +136,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MutationResponse'
+  '/v1/projects/{project_id}/tasks/{task_id}/status':
+    put:
+      operationId: tasks_task_id_status_put
+      summary: Change task status
+      tags:
+        - Tasks
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: task_id
+          description: タスクID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskStatusPut'
+      responses:
+        '200':
+          description: Change a task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutationResponse'
 components:
   schemas:
     MutationResponse:
@@ -218,3 +251,25 @@ components:
           type: string
         status:
           type: string
+    TaskStatusPut:
+      type: object
+      required:
+        - before_status
+        - after_status
+      properties:
+        before_status:
+          type: string
+          enum:
+            - created
+            - todo
+            - doing
+            - done
+            - closed
+        after_status:
+          type: string
+          enum:
+            - created
+            - todo
+            - doing
+            - done
+            - closed
