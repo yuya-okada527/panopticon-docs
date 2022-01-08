@@ -45,13 +45,10 @@ response
     "external_url": "https://github.com/...",
     "name": "name",
     "description": "description",
-    "status": "TODO"
+    "status": "todo"
   }
 ]
 ```
-
-- POST /v1/projects/{project_id}/tasks/orders
-- タスクの順番を入れ替える
 
 ## タスク詳細
 
@@ -66,7 +63,7 @@ response
   "external_url": "https://github.com/...",
   "name": "name",
   "description": "description",
-  "status": "TODO"
+  "status": "todo"
 }
 ```
 

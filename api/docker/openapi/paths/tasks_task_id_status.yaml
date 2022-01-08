@@ -1,0 +1,32 @@
+put:
+  operationId: tasks_task_id_status_put
+  summary: Change task status
+  tags:
+    - Tasks
+  parameters:
+    - in: path
+      name: project_id
+      description: "プロジェクトID"
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - in: path
+      name: task_id
+      description: "タスクID"
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/TaskStatusPut"
+  responses:
+    "200":
+      description: Change a task status
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MutationResponse"

@@ -61,3 +61,47 @@ TaskGet:
         - doing
         - done
         - closed
+TaskPost:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+    description:
+      type: string
+TaskPut:
+  type: object
+  required:
+    - name
+    - description
+    - status
+  properties:
+    name:
+      type: string
+    description:
+      type: string
+    status:
+      type: string
+TaskStatusPut:
+  type: object
+  required:
+    - before_status
+    - after_status
+  properties:
+    before_status:
+      type: string
+      enum:
+        - created
+        - todo
+        - doing
+        - done
+        - closed
+    after_status:
+      type: string
+      enum:
+        - created
+        - todo
+        - doing
+        - done
+        - closed

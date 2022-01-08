@@ -2,3 +2,7 @@
   $ref: "./projects.yaml"
 /v1/projects/{project_id}/tasks:
   $ref: "./tasks.yaml"
+/v1/projects/{project_id}/tasks/{task_id}:
+  $ref: "./tasks_task_id.yaml"
+/v1/projects/{project_id}/tasks/{task_id}/status:
+  $ref: "./tasks_task_id_status.yaml"
