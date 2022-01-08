@@ -50,9 +50,6 @@ response
 ]
 ```
 
-- POST /v1/projects/{project_id}/tasks/orders
-- タスクの順番を入れ替える
-
 ## タスク詳細
 
 - GET /v1/projects/{project_id}/tasks/{task_id}
