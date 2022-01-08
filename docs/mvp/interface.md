@@ -66,8 +66,7 @@ response
   "external_url": "https://github.com/...",
   "name": "name",
   "description": "description",
-  "status": "TODO",
-  "position": 1
+  "status": "TODO"
 }
 ```
 

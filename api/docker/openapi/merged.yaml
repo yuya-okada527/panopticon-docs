@@ -35,6 +35,45 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MutationResponse'
+  '/v1/projects/{project_id}/tasks':
+    get:
+      operationId: tasks_get
+      summary: List tasks
+      tags:
+        - Tasks
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: status
+          description: タスクステータス
+          required: false
+          schema:
+            type: string
+            enum:
+              - created
+              - todo
+              - doing
+              - done
+              - closed
+        - in: query
+          name: keyword
+          description: 検索キーワード
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns a list of tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
 components:
   schemas:
     MutationResponse:
@@ -67,3 +106,31 @@ components:
       properties:
         name:
           type: string
+    Tasks:
+      type: array
+      items:
+        $ref: '#/components/schemas/TaskGet'
+    TaskGet:
+      type: object
+      required:
+        - id
+        - name
+        - status
+      properties:
+        id:
+          type: integer
+          format: int64
+        external_url:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - created
+            - todo
+            - doing
+            - done
+            - closed
