@@ -1,2 +1,30 @@
 get:
   operationId: tasks_get
+  summary: List tasks
+  tags:
+    - Tasks
+  parameters:
+    - in: path
+      name: project_id
+      required: true
+      schema:
+        type: integer
+        format: int64
+    - in: query
+      name: status
+      required: false
+      schema:
+        type: string
+        enum:
+          - created
+          - todo
+          - doing
+          - done
+          - closed
+  responses:
+    "200":
+      description: Returns a list of tasks
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Tasks"
