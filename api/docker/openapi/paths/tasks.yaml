@@ -36,3 +36,28 @@ get:
         application/json:
           schema:
             $ref: "#/components/schemas/Tasks"
+post:
+  operationId: tasks_post
+  summary: Create a task
+  tags:
+    - Tasks
+  parameters:
+    - in: path
+      name: project_id
+      description: "プロジェクトID"
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/TaskPost"
+  responses:
+    "200":
+      description: Create a task
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/MutationResponse"

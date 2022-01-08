@@ -1,46 +1,32 @@
 get:
-  operationId: tasks_task_id_get
-  summary: Show task detail
+  operationId: task_providers_get
+  summary: List task providers
   tags:
-    - Tasks
+    - TaskProviders
   parameters:
     - in: path
       name: project_id
       description: "プロジェクトID"
-      required: true
-      schema:
-        type: integer
-        format: int64
-    - in: path
-      name: task_id
-      description: "タスクID"
       required: true
       schema:
         type: integer
         format: int64
   responses:
     "200":
-      description: Returns a task detail
+      description: Returns a list of task providers
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/TaskGet"
-put:
-  operationId: tasks_task_id_put
-  summary: Modify a task
+            $ref: "#/components/schemas/TaskProviders"
+post:
+  operationId: task_providers_post
+  summary: Create a task provider
   tags:
-    - Tasks
+    - TaskProviders
   parameters:
     - in: path
       name: project_id
       description: "プロジェクトID"
-      required: true
-      schema:
-        type: integer
-        format: int64
-    - in: path
-      name: task_id
-      description: "タスクID"
       required: true
       schema:
         type: integer
@@ -49,10 +35,10 @@ put:
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/TaskPut"
+          $ref: "#/components/schemas/TaskProviderPost"
   responses:
     "200":
-      description: Modify a task
+      description: Created id
       content:
         application/json:
           schema:

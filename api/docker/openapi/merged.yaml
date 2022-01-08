@@ -2,6 +2,13 @@ openapi: 3.0.0
 info:
   version: 0.1.0
   title: Panopticon API
+tags:
+  - name: Projects
+    description: About Projects
+  - name: Tasks
+    description: About Tasks
+  - name: TaskProviders
+    description: About Task Providers
 servers:
   - url: 'http://localhost:3000'
 paths:
@@ -74,6 +81,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tasks'
+    post:
+      operationId: tasks_post
+      summary: Create a task
+      tags:
+        - Tasks
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskPost'
+      responses:
+        '200':
+          description: Create a task
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutationResponse'
   '/v1/projects/{project_id}/tasks/{task_id}':
     get:
       operationId: tasks_task_id_get
@@ -102,28 +134,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaskGet'
-    post:
-      operationId: tasks_task_id_post
-      summary: Create a task
-      tags:
-        - Tasks
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TaskPost'
-      responses:
-        '200':
-          description: Create a task
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MutationResponse'
     put:
       operationId: tasks_task_id_put
       summary: Modify a task
       tags:
         - Tasks
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: task_id
+          description: タスクID
+          required: true
+          schema:
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -165,6 +195,114 @@ paths:
       responses:
         '200':
           description: Change a task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutationResponse'
+  '/v1/projects/{project_id}/task_providers':
+    get:
+      operationId: task_providers_get
+      summary: List task providers
+      tags:
+        - TaskProviders
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Returns a list of task providers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskProviders'
+    post:
+      operationId: task_providers_post
+      summary: Create a task provider
+      tags:
+        - TaskProviders
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskProviderPost'
+      responses:
+        '200':
+          description: Created id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutationResponse'
+  '/v1/projects/{project_id}/task_providers/{task_provider_id}':
+    delete:
+      operationId: task_providers_task_provider_id_delete
+      summary: Delete a task provider
+      tags:
+        - TaskProviders
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: task_provider_id
+          description: タスクプロバイダID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Deleted task provider id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MutationResponse'
+  '/v1/projects/{project_id}/task_providers/{task_provider_id}/sync':
+    post:
+      operationId: task_providers_task_provider_id_sync
+      summary: Sync tasks from task providers
+      tags:
+        - TaskProviders
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: task_provider_id
+          description: タスクプロバイダID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: header
+          name: X-Task-Provider-Token
+          description: タスクプロバイダ認証トークン
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Synced task provider id
           content:
             application/json:
               schema:
@@ -273,3 +411,50 @@ components:
             - doing
             - done
             - closed
+    TaskProviders:
+      type: array
+      items:
+        $ref: '#/components/schemas/TaskProviderGet'
+    TaskProviderGet:
+      type: object
+      required:
+        - id
+        - name
+        - provider_kind
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        provider_kind:
+          type: string
+          enum:
+            - user
+            - github
+        provider_url:
+          type: string
+    TaskProviderPost:
+      type: object
+      required:
+        - name
+        - provider_kind
+      properties:
+        name:
+          type: string
+        provider_kind:
+          type: string
+          enum:
+            - user
+            - github
+        organization:
+          type: string
+        repository:
+          type: string
+    TaskProviderSyncPost:
+      type: object
+      required:
+        - user_name
+      properties:
+        user_name:
+          type: string
