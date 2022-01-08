@@ -44,12 +44,14 @@ paths:
       parameters:
         - in: path
           name: project_id
+          description: プロジェクトID
           required: true
           schema:
             type: integer
             format: int64
         - in: query
           name: status
+          description: タスクステータス
           required: false
           schema:
             type: string
@@ -59,6 +61,12 @@ paths:
               - doing
               - done
               - closed
+        - in: query
+          name: keyword
+          description: 検索キーワード
+          required: false
+          schema:
+            type: string
       responses:
         '200':
           description: Returns a list of tasks
