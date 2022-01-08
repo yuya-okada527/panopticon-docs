@@ -74,6 +74,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Tasks'
+  '/v1/projects/{project_id}/tasks/{task_id}':
+    get:
+      operationId: tasks_task_id_get
+      summary: Show task detail
+      tags:
+        - Tasks
+      parameters:
+        - in: path
+          name: project_id
+          description: プロジェクトID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: path
+          name: task_id
+          description: タスクID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Returns a task detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGet'
 components:
   schemas:
     MutationResponse:
