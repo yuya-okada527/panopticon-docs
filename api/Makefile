@@ -29,5 +29,3 @@ console:
 	docker-compose exec panopticon-api rails console
 rspec:
 	docker-compose exec panopticon-api bundle exec rspec
-guard:
-	docker-compose exec panopticon-api bundle exec guard
