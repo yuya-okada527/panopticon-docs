@@ -5,3 +5,5 @@ run:
 	docker-compose exec panopticon-api ridgepole -c config/database.yml -E development -f db/Schemafile --apply
 down:
 	docker-compose down
+open-api-coverage:
+	open ./api/coverage/index.html
