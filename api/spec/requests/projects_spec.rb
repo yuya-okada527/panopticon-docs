@@ -10,9 +10,11 @@ RSpec.describe 'ProjectsAPI' do
     end
     describe 'POST' do
       it 'status code is 200' do
-        post '/v1/projects', params: {
-          name: "test project2"
-        }
+        expect {
+          post '/v1/projects', params: {
+            name: "test project2"
+          }
+        }.to change(Project, :count).by(+1)
         expect(response.status).to eq 200
       end
     end
