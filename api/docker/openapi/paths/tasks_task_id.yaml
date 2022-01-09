@@ -52,7 +52,7 @@ put:
           $ref: "#/components/schemas/TaskPut"
   responses:
     "200":
-      description: Modify a task
+      description: Changed task id
       content:
         application/json:
           schema:

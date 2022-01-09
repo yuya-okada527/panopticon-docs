@@ -22,7 +22,7 @@ post:
           $ref: "#/components/schemas/ProjectPost"
   responses:
     "200":
-      description: Create a project
+      description: Created project id
       content:
         application/json:
           schema:

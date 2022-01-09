@@ -37,7 +37,7 @@ paths:
               $ref: '#/components/schemas/ProjectPost'
       responses:
         '200':
-          description: Create a project
+          description: Created project id
           content:
             application/json:
               schema:
@@ -101,7 +101,7 @@ paths:
               $ref: '#/components/schemas/TaskPost'
       responses:
         '200':
-          description: Create a task
+          description: Created task id
           content:
             application/json:
               schema:
@@ -161,7 +161,7 @@ paths:
               $ref: '#/components/schemas/TaskPut'
       responses:
         '200':
-          description: Modify a task
+          description: Changed task id
           content:
             application/json:
               schema:
@@ -194,7 +194,7 @@ paths:
               $ref: '#/components/schemas/TaskStatusPut'
       responses:
         '200':
-          description: Change a task status
+          description: Changed task id
           content:
             application/json:
               schema:

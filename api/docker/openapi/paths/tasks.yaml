@@ -56,7 +56,7 @@ post:
           $ref: "#/components/schemas/TaskPost"
   responses:
     "200":
-      description: Create a task
+      description: Created task id
       content:
         application/json:
           schema:

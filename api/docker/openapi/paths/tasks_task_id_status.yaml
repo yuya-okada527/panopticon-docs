@@ -25,7 +25,7 @@ put:
           $ref: "#/components/schemas/TaskStatusPut"
   responses:
     "200":
-      description: Change a task status
+      description: Changed task id
       content:
         application/json:
           schema:
