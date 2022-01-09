@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'ProjectsAPI' do
+RSpec.describe 'ProjectsAPI' do
   describe '/v1/projects' do
     describe 'GET' do
       it 'status code is 200' do
