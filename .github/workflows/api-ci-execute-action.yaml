@@ -17,5 +17,5 @@ jobs:
         run: make setup-test
         working-directory: ./api
       - name: test
-        run: make rspec
+        run: docker-compose exec -T panopticon-api bundle exec rspec
         working-directory: ./api
