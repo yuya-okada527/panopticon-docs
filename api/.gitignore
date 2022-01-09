@@ -28,5 +28,11 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# OS
+.DS_Store
+
 # Metabase
 docker/metabase/data/
+
+# Coverage Report
+coverage/

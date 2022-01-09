@@ -70,7 +70,7 @@ class V1::TasksController < ApplicationController
       task.task_status_histories << status_history
       task.save!
     end
-    render :template => 'tasks_task_id_status_put', :locals => { :id => task.id }
+    render :template => 'tasks_task_id_status_put.json.jb', :locals => { :id => task.id }
   end
 
 end

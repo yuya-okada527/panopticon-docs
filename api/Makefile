@@ -29,3 +29,5 @@ console:
 	docker-compose exec panopticon-api rails console
 rspec:
 	docker-compose exec panopticon-api bundle exec rspec
+coverage:
+	open ./coverage/index.html

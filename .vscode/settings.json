@@ -5,5 +5,11 @@
   "files.insertFinalNewline": true,
   "editor.tabSize": 2,
   "plantuml.server": "http://localhost:8080",
-  "plantuml.render": "PlantUMLServer"
+  "plantuml.render": "PlantUMLServer",
+  "coverage-status.searchPatterns": [
+    "api/coverage/.resultset.json",
+    "api/coverage/lcov*.info"
+  ],
+  "simplecov-vscode.path": "./api/coverage/.resultset.json",
+  "simplecov-vscode.enabled": true
 }
