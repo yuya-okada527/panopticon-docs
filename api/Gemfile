@@ -45,6 +45,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   # factory-bot
   gem 'factory_bot_rails'
+  # Guard
+  gem 'guard'
 end
 
 group :development do
