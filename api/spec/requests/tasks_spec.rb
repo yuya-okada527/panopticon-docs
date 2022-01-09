@@ -46,9 +46,20 @@ RSpec.describe 'TasksAPI' do
     end
 
   end
-  describe '/v1/projects/{project_id}/tasks/{task_id}/sync' do
+  describe '/v1/projects/{project_id}/tasks/{task_id}/status' do
+    let (:task) { create(:task, project_id: project.id, status: 1) }
     describe 'PUT' do
-
+      it 'status code is 200 and task status history is updated' do
+        expect {
+          put "/v1/projects/#{project.id}/tasks/#{task.id}/status", params: {
+            before_status: "todo",
+            after_status: "doing"
+          }
+        }.to change(TaskStatusHistory, :count).by(+1)
+        expect(response.status).to eq 200
+        updated_task = Task.find(task.id)
+        expect(updated_task.status).to eq "doing"
+      end
     end
   end
 end
