@@ -8,6 +8,7 @@
 - フレームワーク: Ruby on Rails
 - データベース: MySQL
 - ドキュメント: OpenAPI
+- テストフレームワーク: RSpec
 
 ### Front
 
