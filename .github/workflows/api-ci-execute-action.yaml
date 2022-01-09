@@ -1,0 +1,21 @@
+name: API CI Excution Action
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: init docker-compose
+        run: make setup-test
+        working-directory: ./api
+      - name: test
+        run: docker-compose exec -T panopticon-api bundle exec rspec
+        working-directory: ./api

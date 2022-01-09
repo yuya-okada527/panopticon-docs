@@ -9,6 +9,13 @@ migrate:
 	docker-compose exec panopticon-api rails db:create
 	docker-compose exec panopticon-api ridgepole -c config/database.yml -E development -f db/Schemafile --apply
 	docker-compose exec panopticon-api ridgepole -c config/database.yml -E test -f db/Schemafile --apply
+setup-test:
+	docker-compose up -d
+	docker-compose exec -T panopticon-api sh ./bin/waiting-db-connection.sh
+	docker-compose exec -T panopticon-api rails db:create
+	docker-compose exec -T panopticon-api ridgepole -c config/database.yml -E development -f db/Schemafile --apply
+	docker-compose exec -T panopticon-api ridgepole -c config/database.yml -E test -f db/Schemafile --apply
+	docker-compose exec -T panopticon-api rails db:seed
 seed:
 	docker-compose exec panopticon-api rails db:seed
 down:
