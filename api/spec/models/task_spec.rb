@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Project do
+RSpec.describe Task do
 
 end
