@@ -30,3 +30,6 @@
 
 # Metabase
 docker/metabase/data/
+
+# Coverage Report
+coverage/
