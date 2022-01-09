@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :project do
-    name {"test project"}
+    name { "test project" }
   end
 end
