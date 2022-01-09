@@ -20,4 +20,18 @@ RSpec.describe 'TasksAPI' do
       end
     end
   end
+  describe '/v1/projects/{project_id}/tasks/{task_id}' do
+    describe 'GET' do
+
+    end
+    describe 'PUT' do
+
+    end
+
+  end
+  describe '/v1/projects/{project_id}/tasks/{task_id}/sync' do
+    describe 'PUT' do
+
+    end
+  end
 end
