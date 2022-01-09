@@ -33,7 +33,16 @@ RSpec.describe 'TasksAPI' do
       end
     end
     describe 'PUT' do
-
+      it 'status code is 200 and task is properly updated' do
+        put "/v1/projects/#{project.id}/tasks/#{task.id}", params: {
+          name: "changed name",
+          description: "changed description"
+        }
+        expect(response.status).to eq 200
+        updated_task = Task.find(task.id)
+        expect(updated_task.name).to eq "changed name"
+        expect(updated_task.description).to eq "changed description"
+      end
     end
 
   end
