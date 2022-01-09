@@ -10,5 +10,14 @@ RSpec.describe 'TasksAPI' do
         expect(response.status).to eq 200
       end
     end
+    describe 'POST' do
+      it 'status code is 200' do
+        post "/v1/projects/#{project.id}/tasks", params: {
+          name: "name",
+          description: "description"
+        }
+        expect(response.status).to eq 200
+      end
+    end
   end
 end
