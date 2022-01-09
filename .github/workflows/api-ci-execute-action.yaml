@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - develop
+    paths:
+      - api/**
+      - .github/workflows/api-ci-execute-action.yaml
   pull_request:
     branches:
       - develop
+    paths:
+      - api/**
+      - .github/workflows/api-ci-execute-action.yaml
 
 jobs:
   test:
