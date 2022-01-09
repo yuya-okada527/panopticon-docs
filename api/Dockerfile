@@ -8,7 +8,7 @@ WORKDIR $APP_ROOT
 
 RUN apt-get update -qq \
 	&& apt-get install -y \
-  	build-essential \
+		build-essential \
 		libpq-dev \
 		nodejs \
 		default-mysql-client \
