@@ -15,7 +15,7 @@ on:
       - .github/workflows/api-ci-execute-action.yaml
 
 jobs:
-  test:
+  rspec:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

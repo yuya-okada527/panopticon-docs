@@ -1,0 +1,45 @@
+name: E2E CI Execute Action
+
+on:
+  push:
+    branches:
+      - develop
+    pull_request:
+      - develop
+    paths:
+      - e2e/**
+      - .github/workflows/e2e-ci-execute-action.yaml
+
+jobs:
+  e2e:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+      - name: start api
+        run: make setup-test
+        working-directory: ./api
+      - name: Install front dependencies
+        run: yarn
+        working-directory: ./front
+      - name: start front
+        run: yarn dev &
+        working-directory: ./front
+      - name: Install E2E dependencies
+        run: yarn
+        working-directory: ./e2e
+      - name: Install playwright
+        run: npx playwright install --with-deps
+        working-directory: ./e2e
+      - name: Run Playwright tests
+        run: yarn playwright test
+        working-directory: ./e2e
+      - uses: actions/upload-artifact@v2
+        if: always()
+        working-directory: ./e2e
+        with:
+          name: playwright-test-results
+          path: test-results/
