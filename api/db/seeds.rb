@@ -1,13 +1,11 @@
-# TODO: データの交換方法は変える
-# データ初期化(暫定対応)
-Project.destroy_all
-TaskProvider.destroy_all
-Task.destroy_all
-TaskStatusHistory.destroy_all
-ActiveRecord::Base.connection.execute('ALTER TABLE projects AUTO_INCREMENT = 1')
-ActiveRecord::Base.connection.execute('ALTER TABLE task_providers AUTO_INCREMENT = 1')
-ActiveRecord::Base.connection.execute('ALTER TABLE tasks AUTO_INCREMENT = 1')
-ActiveRecord::Base.connection.execute('ALTER TABLE task_status_histories AUTO_INCREMENT = 1')
+[
+  "projects",
+  "tasks",
+  "task_providers",
+  "task_status_histories"
+].each do |table_name|
+  ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table_name}")
+end
 
 # プロジェクト
 project = Project.new(name: "Local Project")
