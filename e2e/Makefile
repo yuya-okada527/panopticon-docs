@@ -1,3 +1,3 @@
 run:
-	yarn start
+	yarn start --project=local
 	yarn open
