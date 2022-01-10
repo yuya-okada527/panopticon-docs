@@ -32,7 +32,7 @@ jobs:
         run: yarn
         working-directory: ./e2e
       - name: Install playwright
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
         working-directory: ./e2e
       - name: Run Playwright tests
         run: yarn playwright test --project=ci
