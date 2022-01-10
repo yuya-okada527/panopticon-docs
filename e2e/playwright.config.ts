@@ -56,6 +56,7 @@ const config: PlaywrightTestConfig = {
     {
       name: "ci",
       use: {
+        baseURL: "http://localhost:4000",
         ...devices["Desktop Chrome"],
       },
     },
