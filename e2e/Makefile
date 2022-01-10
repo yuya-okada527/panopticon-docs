@@ -1,4 +1,5 @@
 run:
+	make seed
 	yarn start --project=local
 	yarn open
 seed:
