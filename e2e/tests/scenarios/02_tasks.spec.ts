@@ -12,7 +12,7 @@ test.describe("Tasks", () => {
       await page.locator("text='Local Project'").click();
       await expect(page).toHaveURL(/.*\/[0-9]+\/tasks/);
     });
-    test.only("タスクプロバイダページに遷移できる", async ({ page }) => {
+    test("タスクプロバイダページに遷移できる", async ({ page }) => {
       await E2EUtils.sleep(1);
       await page.locator("text='Providers'").click();
       await expect(page).toHaveURL(/.*\/[0-9]+\/task_providers/);
