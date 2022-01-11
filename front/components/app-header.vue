@@ -1,6 +1,8 @@
 <template>
   <header class="header">
-    <h1 class="title">Panopticon</h1>
+    <a href="/" class="title-link">
+      <h1 class="title">Panopticon</h1>
+    </a>
   </header>
 </template>
 
@@ -12,5 +14,9 @@
 .title {
   margin: 0;
   padding: 12px;
+}
+.title-link {
+  color: white;
+  text-decoration: none;
 }
 </style>
