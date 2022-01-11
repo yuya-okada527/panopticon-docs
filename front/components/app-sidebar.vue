@@ -2,7 +2,7 @@
   <div class="sidebar">
     <ul class="menu-list">
       <li v-for="menu in store.menus" :key="menu.name">
-        <NuxtLink :to="menu.to" class="link">{{ menu.name }}</NuxtLink>
+        <a @click="handleMenuClick(menu.path)" class="link">{{ menu.name }}</a>
       </li>
     </ul>
   </div>
@@ -11,7 +11,7 @@
 <script lang="ts">
 type Menu = {
   name: string;
-  to: string;
+  path: string;
 };
 type Store = {
   menus: Menu[];
@@ -19,28 +19,39 @@ type Store = {
 export default defineComponent({
   async setup() {
     const route = useRoute();
+    const router = useRouter();
     const store: Store = reactive({
       menus: [
         {
           name: "Tasks",
-          to: `/${route.params.project_id}/tasks`,
+          path: `tasks`,
         },
         {
           name: "Providers",
-          to: `/${route.params.project_id}/task_providers`,
+          path: `task_providers`,
         },
         {
           name: "Analysis",
-          to: `/${route.params.project_id}/analysis`,
+          path: `analysis`,
         },
         {
           name: "Retrospection",
-          to: `/${route.params.project_id}/retrospection`,
+          path: `retrospection`,
         },
       ],
     });
+    const handleMenuClick = (path: string) => {
+      // TOOD 暫定対応
+      const defaultProject = 1;
+      if (!route.params.project_id) {
+        router.push(`/${defaultProject}/${path}`);
+        return;
+      }
+      router.push(`/${route.params.project_id}/${path}`);
+    };
     return {
       store,
+      handleMenuClick,
     };
   },
 });
