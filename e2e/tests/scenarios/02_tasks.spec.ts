@@ -12,6 +12,13 @@ test.describe("Tasks", () => {
       await page.locator("text='Local Project'").click();
       await expect(page).toHaveURL(/.*\/[0-9]+\/tasks/);
     });
+    test.afterEach(async ({ page }, testInfo) => {
+      const screenshot = await page.screenshot();
+      await testInfo.attach("screenshot", {
+        body: screenshot,
+        contentType: "image/png",
+      });
+    });
     test("タスクプロバイダページに遷移できる", async ({ page }) => {
       await E2EUtils.sleep(1);
       await page.locator("text='Providers'").click();

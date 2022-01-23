@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "playwright test",
-    "open": "playwright show-report"
+    "open": "playwright show-report",
+    "install": "playwright install chromium"
   }
 }
