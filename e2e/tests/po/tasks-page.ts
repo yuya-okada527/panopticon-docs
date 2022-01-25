@@ -7,4 +7,12 @@ export class TasksPage {
   constructor(page: Page) {
     this.page = page;
   }
+
+  async goto(projectId: number) {
+    await this.page.goto(`/${projectId}/tasks`);
+  }
+
+  async isOnPage(projectId: number) {
+    expect(this.page).toHaveURL(`/${projectId}/tasks`);
+  }
 }
