@@ -1,11 +1,10 @@
 import { expect, Locator, Page } from "@playwright/test";
+import PageObject from "./page-object";
 import { E2EUtils } from "../utils/e2e-utils";
 
-export class TasksPage {
-  readonly page: Page;
-
+export default class TasksPage extends PageObject {
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
   async goto(projectId: number) {

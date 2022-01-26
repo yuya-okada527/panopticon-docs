@@ -2,7 +2,7 @@
   Task一覧画面に対するテストを記載する
  */
 import { test, expect } from "@playwright/test";
-import { TasksPage } from "../po/tasks-page";
+import TasksPage from "../po/tasks-page";
 import { E2EUtils } from "../utils/e2e-utils";
 
 test.describe("Tasks", () => {
@@ -21,8 +21,10 @@ test.describe("Tasks", () => {
       });
     });
     test("タスクプロバイダページに遷移できる", async ({ page }) => {
+      const taskPage = new TasksPage(page);
       await E2EUtils.sleep(1);
-      await page.locator("text='Providers'").click();
+      await taskPage.gotoProviders();
+      // 下のチェックは、TaskProvidersPageに持つ感じで。。
       await expect(page).toHaveURL(/.*\/[0-9]+\/task_providers/);
     });
   });

@@ -2,7 +2,7 @@
   Project一覧画面に対するテストを記載する
  */
 import { test, expect } from "@playwright/test";
-import { ProjectsPage } from "../po/projects-page";
+import ProjectsPage from "../po/projects-page";
 import { E2EUtils } from "../utils/e2e-utils";
 
 test.describe("Projects", () => {
