@@ -3,6 +3,7 @@
  */
 import { test, expect } from "@playwright/test";
 import TasksPage from "../po/tasks-page";
+import TaskProvidersPage from "../po/task-providers-page";
 import { E2EUtils } from "../utils/e2e-utils";
 
 test.describe("Tasks", () => {
@@ -24,8 +25,7 @@ test.describe("Tasks", () => {
       const taskPage = new TasksPage(page);
       await E2EUtils.sleep(1);
       await taskPage.gotoProviders();
-      // 下のチェックは、TaskProvidersPageに持つ感じで。。
-      await expect(page).toHaveURL(/.*\/[0-9]+\/task_providers/);
+      await TaskProvidersPage.isOnPage(page);
     });
   });
 });
