@@ -4,6 +4,7 @@
 import { test, expect } from "@playwright/test";
 import TasksPage from "../po/tasks-page";
 import TaskProvidersPage from "../po/task-providers-page";
+import NewTaskPage from "../po/new-task-page";
 import { E2EUtils } from "../utils/e2e-utils";
 
 test.describe("Tasks", () => {
@@ -22,10 +23,16 @@ test.describe("Tasks", () => {
       });
     });
     test("タスクプロバイダページに遷移できる", async ({ page }) => {
-      const taskPage = new TasksPage(page);
+      const tasksPage = new TasksPage(page);
       await E2EUtils.sleep(1);
-      await taskPage.gotoProviders();
+      await tasksPage.gotoProvidersPage();
       await TaskProvidersPage.isOnPage(page);
+    });
+    test.only("タスク作成ページに遷移できる", async ({ page }) => {
+      const tasksPage = new TasksPage(page);
+      await E2EUtils.sleep(1);
+      await tasksPage.clickAddButton();
+      await NewTaskPage.isOnPage(page);
     });
   });
 });

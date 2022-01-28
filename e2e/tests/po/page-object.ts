@@ -9,7 +9,7 @@ export default class PageObject {
     this.providersLink = this.page.locator("text='Providers'");
   }
 
-  async gotoProviders() {
+  async gotoProvidersPage() {
     await this.providersLink.click();
   }
 }
