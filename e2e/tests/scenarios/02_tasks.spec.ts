@@ -28,11 +28,16 @@ test.describe("Tasks", () => {
       await tasksPage.gotoProvidersPage();
       await TaskProvidersPage.isOnPage(page);
     });
-    test.only("タスク作成ページに遷移できる", async ({ page }) => {
+    test("タスク作成ページに遷移できる", async ({ page }) => {
       const tasksPage = new TasksPage(page);
       await E2EUtils.sleep(1);
       await tasksPage.clickAddButton();
       await NewTaskPage.isOnPage(page);
     });
+    test("タスクの表示ができる", async ({ page }) => {
+      const tasksPage = new TasksPage(page);
+      expect(await tasksPage.countTasks("Todo")).toBe(1);
+    });
+    test.skip("タスクを移動することができる", async ({ page }) => {});
   });
 });
