@@ -16,16 +16,20 @@ export default class TasksPage extends PageObject {
     await this.page.locator(".add-button").click();
   }
 
+  async clickTaskCard(taskName: string) {
+    await this.page.locator(`text='${taskName}'`).click();
+  }
+
   async countTasks(taskStatus: TaskStatus): number {
     return await this.getTaskList(taskStatus).locator("li").count();
   }
 
+  // TODO Playwrightでdrag and drop APIの操作がうまくいかない
   async moveTask(
     taskName: string,
     fromStatus: TaskStatus,
     toStatus: TaskStatus
   ) {
-    // TODO Playwrightでdrag and drop APIの操作がうまくいかない
     const targetTask = await this.getTaskList(fromStatus).locator(
       `text='${taskName}'`
     );

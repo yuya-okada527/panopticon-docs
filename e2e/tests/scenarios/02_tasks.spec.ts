@@ -4,13 +4,15 @@
 import { test, expect } from "@playwright/test";
 import TasksPage from "../po/tasks-page";
 import TaskProvidersPage from "../po/task-providers-page";
+import TaskDetailPage from "../po/task-detail-page";
 import NewTaskPage from "../po/new-task-page";
 import { E2EUtils } from "../utils/e2e-utils";
+
+const projectId = 1;
 
 test.describe("Tasks", () => {
   test.describe("/{project_id}/tasks", () => {
     test.beforeEach(async ({ page }) => {
-      const projectId = 1;
       const tasksPage = new TasksPage(page);
       await tasksPage.goto(projectId);
       await tasksPage.isOnPage(projectId);
@@ -34,10 +36,16 @@ test.describe("Tasks", () => {
       await tasksPage.clickAddButton();
       await NewTaskPage.isOnPage(page);
     });
-    test("タスクの表示ができる", async ({ page }) => {
+    test("タスク一覧にタスクが表示できる", async ({ page }) => {
       const tasksPage = new TasksPage(page);
       expect(await tasksPage.countTasks("Todo")).toBe(1);
     });
     test.skip("タスクを移動することができる", async ({ page }) => {});
+    test("タスク詳細に遷移することができる", async ({ page }) => {
+      const tasksPage = new TasksPage(page);
+      await E2EUtils.sleep(1);
+      await tasksPage.clickTaskCard("task1");
+      await TaskDetailPage.isOnPage(page);
+    });
   });
 });
