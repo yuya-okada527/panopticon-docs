@@ -10,7 +10,6 @@
     "start": "playwright test",
     "open": "playwright show-report",
     "setup": "playwright install chromium",
-    "install": "playwright install chromium",
     "codegen": "playwright codegen localhost:4000"
   }
 }
