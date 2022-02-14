@@ -43,8 +43,9 @@ test.describe("Tasks", () => {
     test.skip("タスクを移動することができる", async ({ page }) => {});
     test("タスク詳細に遷移することができる", async ({ page }) => {
       const tasksPage = new TasksPage(page);
-      await E2EUtils.sleep(2);
+      await E2EUtils.sleep(1);
       await tasksPage.clickTaskCard("task1");
+      await E2EUtils.sleep(1);
       await TaskDetailPage.isOnPage(page);
     });
   });

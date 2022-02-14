@@ -26,6 +26,7 @@ test.describe("Projects", () => {
       const projectsPage = new ProjectsPage(page);
       const projectName = "E2E Project";
       await projectsPage.fillProjectName(projectName);
+      await E2EUtils.sleep(1);
       await projectsPage.clickAddButton();
       await projectsPage.isProjectNameVisible(projectName);
     });
