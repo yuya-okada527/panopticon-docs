@@ -40,7 +40,9 @@ test.describe("Tasks", () => {
       const tasksPage = new TasksPage(page);
       expect(await tasksPage.countTasks("Todo")).toBe(1);
     });
-    test.skip("タスクを移動することができる", async ({ page }) => {});
+    test.skip("タスクを移動することができる", async ({ page }) => {
+      // TODO drag and drop APIのテストがうまく動作しないので、一旦skip
+    });
     test("タスク詳細に遷移することができる", async ({ page }) => {
       const tasksPage = new TasksPage(page);
       await E2EUtils.sleep(1);
