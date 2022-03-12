@@ -17,13 +17,7 @@ test.describe("Tasks", () => {
       await tasksPage.goto(projectId);
       await tasksPage.isOnPage(projectId);
     });
-    test.afterEach(async ({ page }, testInfo) => {
-      const screenshot = await page.screenshot();
-      await testInfo.attach("screenshot", {
-        body: screenshot,
-        contentType: "image/png",
-      });
-    });
+    E2EUtils.addCommonHooks(test);
     test("タスクプロバイダページに遷移できる", async ({ page }) => {
       const tasksPage = new TasksPage(page);
       await E2EUtils.sleep(1);

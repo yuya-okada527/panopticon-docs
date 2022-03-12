@@ -19,12 +19,11 @@ export default class ProjectsPage extends PageObject {
   }
 
   async fillProjectName(projectName: string) {
-    await E2EUtils.sleep(2);
+    await E2EUtils.sleep(1);
     await this.page.locator("input[type=text]").fill(projectName);
   }
 
   async clickAddButton() {
-    await E2EUtils.sleep(2);
     await this.page.locator("text=Add").click();
   }
 
