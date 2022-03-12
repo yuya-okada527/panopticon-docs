@@ -20,7 +20,12 @@ export default class TasksPage extends PageObject {
     await this.page.locator(`text='${taskName}'`).click();
   }
 
-  async countTasks(taskStatus: TaskStatus): number {
+  async isTaskVisible(name: string) {
+    // TODO どのステータスか確認するようにする
+    await expect(this.page.locator(`text=${name}`)).toBeVisible();
+  }
+
+  async countTasks(taskStatus: TaskStatus): Promise<number> {
     return await this.getTaskList(taskStatus).locator("li").count();
   }
 
