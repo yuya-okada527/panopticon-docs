@@ -5,6 +5,7 @@ import { test, expect } from "@playwright/test";
 import { E2EUtils } from "../utils/e2e-utils";
 
 test.describe("Task Provider", () => {
+  E2EUtils.addCommonHooks(test);
   test.skip("新規タスクプロバイダが作成できる", async ({ page }) => {
     // TODO implements
   });

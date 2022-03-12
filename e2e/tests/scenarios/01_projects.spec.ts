@@ -11,13 +11,7 @@ test.describe("Projects", () => {
       const projectsPage = new ProjectsPage(page);
       await projectsPage.goto();
     });
-    test.afterEach(async ({ page }, testInfo) => {
-      const screenshot = await page.screenshot();
-      await testInfo.attach("screenshot", {
-        body: screenshot,
-        contentType: "image/png",
-      });
-    });
+    E2EUtils.addCommonHooks(test);
     test("プロジェクトTOPに遷移できること", async ({ page }) => {
       const projectsPage = new ProjectsPage(page);
       await projectsPage.selectProject("Local Project");
@@ -26,8 +20,9 @@ test.describe("Projects", () => {
       const projectsPage = new ProjectsPage(page);
       const projectName = "E2E Project";
       await projectsPage.fillProjectName(projectName);
-      await E2EUtils.sleep(1);
       await projectsPage.clickAddButton();
+      // リロードしないと更新のタイミングが合わない
+      await page.reload();
       await projectsPage.isProjectNameVisible(projectName);
     });
   });

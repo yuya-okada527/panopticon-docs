@@ -5,6 +5,7 @@ import { test, expect } from "@playwright/test";
 import { E2EUtils } from "../utils/e2e-utils";
 
 test.describe("Task Detail", () => {
+  E2EUtils.addCommonHooks(test);
   test.skip("タスクを編集できる", async ({ page }) => {
     // TODO implements
     // タスクステータスを更新できる
