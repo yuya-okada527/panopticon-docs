@@ -9,7 +9,7 @@ on:
 
 jobs:
   cooperate-issue:
-    if: github.event.label.name == 'loadmap'
+    # if: github.event.label.name == 'loadmap'
     runs-on: ubuntu-latest
     steps:
       - name: Login
