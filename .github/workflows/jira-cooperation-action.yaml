@@ -27,11 +27,13 @@ jobs:
         id: return_context
         with:
           script: |
-            return github.rest.issues.listComments({
+            const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
+            console.log(comments, null, '\t')
+            return comments
       - name: Show steps.return_context
         env:
           RETURN_CONTEXT: ${{ toJson(steps.return_context.outputs) }}
