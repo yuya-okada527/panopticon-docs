@@ -9,7 +9,7 @@ on:
 
 jobs:
   cooperate-issue:
-    # if: github.event.label.name == 'loadmap'
+    if: github.event.label.name == 'loadmap'
     runs-on: ubuntu-latest
     steps:
       - name: Login
@@ -20,7 +20,7 @@ jobs:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
       - name: Debug
-        run: echo 'hoge'
+        run: cat $GITHUB_EVENT_PATH
 
       # うわ・・・なんか、Jira側の情報をGitHub上に持っておかないと。。
       # - name: Find Jira Issue
