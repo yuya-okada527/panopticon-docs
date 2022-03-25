@@ -32,8 +32,8 @@ jobs:
             #   issue_number: context.issue.number,
             # });
             # console.log(JSON.stringify(comments, null, '\t'))
-            echo ${{ github.event.comments_url }}
-            curl ${{ github.event.comments_url }}
+            echo ${{ github.event.issue.comments_url }}
+            curl ${{ github.event.issue.comments_url }}
 
       # - name: コメントつけてみる
       #   uses: actions/github-script@v6
