@@ -24,16 +24,18 @@ jobs:
 
       - name: Get Comments
         uses: actions/github-script@v6
+        id: return_context
         with:
           script: |
-            # const comments = github.rest.issues.listComments({
-            #   owner: context.repo.owner,
-            #   repo: context.repo.repo,
-            #   issue_number: context.issue.number,
-            # });
-            # console.log(JSON.stringify(comments, null, '\t'))
-            echo ${{ github.event.issue.comments_url }}
-            curl ${{ github.event.issue.comments_url }}
+            return github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+      - name: Show steps.return_context
+        env:
+          RETURN_CONTEXT: ${{ toJson(steps.return_context.outputs) }}
+        run: echo "$RETURN_CONTEXT"
 
       # - name: コメントつけてみる
       #   uses: actions/github-script@v6
