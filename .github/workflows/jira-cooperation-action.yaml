@@ -26,11 +26,12 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.get({
+            const comments = github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
+            console.log(JSON.stringify(comments, null, '\t'))
 
       # - name: コメントつけてみる
       #   uses: actions/github-script@v6
