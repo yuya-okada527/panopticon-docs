@@ -32,12 +32,10 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            console.log(comments, null, '\t')
-            return comments
-      - name: Show steps.return_context
-        env:
-          RETURN_CONTEXT: ${{ toJson(steps.return_context.outputs) }}
-        run: echo "$RETURN_CONTEXT"
+            const matchedComment = comments.find((comment) => {
+              return /Matched/.test(comment.body)
+            })
+            console.log(matchedComment.body)
 
       # - name: コメントつけてみる
       #   uses: actions/github-script@v6
