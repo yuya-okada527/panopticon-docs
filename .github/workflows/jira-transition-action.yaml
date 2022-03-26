@@ -2,11 +2,11 @@ name: Jira Transition Action
 
 on:
   issues:
-    types: [closed]
+    types: [unlabeled, closed]
 
 jobs:
   complete-task:
-    if: github.event.label.name == 'loadmap'
+    # if: github.event.label.name == 'loadmap'
     runs-on: ubuntu-latest
     steps:
       - name: Login
