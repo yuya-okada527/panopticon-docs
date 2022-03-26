@@ -6,7 +6,7 @@ on:
 
 jobs:
   complete-task:
-    # if: github.event.label.name == 'loadmap'
+    if: contains(github.event.issue.labels.*.name, 'loadmap')
     runs-on: ubuntu-latest
     steps:
       - name: Login
@@ -34,6 +34,7 @@ jobs:
             });
             console.log(JSON.stringify(comments, null, '\t'))
             const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
+            console.log("targetComment: " + targetComment)
             if (targetComment) {
               return targetComment.split('=')[1]
             }
