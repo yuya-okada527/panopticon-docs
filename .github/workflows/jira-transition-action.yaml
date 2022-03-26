@@ -6,7 +6,9 @@ on:
 
 jobs:
   complete-task:
-    # if: contains(github.event.issue.labels.*.name, 'loadmap')
+    if: >-
+      contains(github.event.issue.labels.*.name, 'loadmap') || # closedの場合
+      github.event.label.name == 'loadmap' # unlabeledの場合
     runs-on: ubuntu-latest
     steps:
       - name: Login
@@ -26,15 +28,12 @@ jobs:
           # デフォルトだとJSONエンコードされる。比較が面倒なので、プレーンな文字列で返すように変更。
           result-encoding: string
           script: |
-            console.log("context.issue.number: " + context.issue.number)
             const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            console.log(JSON.stringify(comments, null, '\t'))
             const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
-            console.log("targetComment: " + targetComment)
             if (targetComment) {
               return targetComment.split('=')[1]
             }
@@ -42,7 +41,7 @@ jobs:
 
       - name: Close Task
         uses: atlassian/gajira-transition@master
-        if: steps.get-cooperated-issue-number.outputs.result == 'not cooperated'
+        if: steps.get-cooperated-issue-number.outputs.result != 'not cooperated'
         with:
           issue: ${{ steps.get-cooperated-issue-number.outputs.result }}
           transition: "完了"
