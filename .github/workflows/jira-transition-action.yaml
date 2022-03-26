@@ -6,7 +6,7 @@ on:
 
 jobs:
   complete-task:
-    if: contains(github.event.issue.labels.*.name, 'loadmap')
+    # if: contains(github.event.issue.labels.*.name, 'loadmap')
     runs-on: ubuntu-latest
     steps:
       - name: Login
