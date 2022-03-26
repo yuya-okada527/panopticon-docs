@@ -1,18 +1,13 @@
-name: Jira Cooperation Action
+name: Jira Create Task Action
 
 on:
   issues:
-    types: [opened, labeled]
-  pull_request:
-    branches:
-      - develop
+    types: [labeled]
 
 jobs:
   cooperate-issue:
     if: github.event.label.name == 'loadmap'
     runs-on: ubuntu-latest
-    env:
-      JIRA_ISSUE_BASE_URL: ${{ secrets.JIRA_BASE_URL }}/jira/software/projects/PAN/boards/1?selectedIssue=
     steps:
       - name: Login
         uses: atlassian/gajira-login@master
@@ -20,9 +15,6 @@ jobs:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-
-      - name: Debug
-        run: cat $GITHUB_EVENT_PATH
 
       - name: Get Cooperated Issue Number
         uses: actions/github-script@v6
@@ -36,7 +28,7 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-URL = ${{ env.JIRA_ISSUE_BASE_URL }}/.test(body))
+            const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
             if (targetComment) {
               return targetComment.split('=')[1]
             }
@@ -67,7 +59,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'JIRA-URL = ${{ env.JIRA_ISSUE_BASE_URL }}${{ steps.create-jira-issue.outputs.issue }}'
+              body: 'JIRA-ISSUE-NUM=${{ steps.create-jira-issue.outputs.issue }}'
             })
 
 # TODO
@@ -75,5 +67,5 @@ jobs:
 # 「GitHub -> Jira」と「Jira -> GitHub」
 # ラベル付与 -> Jira登録
 # ラベル付きIssue作成 -> Jira登録
-# ラベルを外す -> Jiraステータス変更
-# ラベル付きIssueをClose -> Jiraステータス変更
+# ラベルを外す -> Jiraステータス変更(完了)
+# ラベル付きIssueをClose -> Jiraステータス変更(完了)

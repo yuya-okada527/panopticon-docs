@@ -1,0 +1,44 @@
+name: Jira Transition Action
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  complete-task:
+    if: github.event.label.name == 'loadmap'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login
+        uses: atlassian/gajira-login@master
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+      - name: Debug
+        run: cat $GITHUB_EVENT_PATH
+
+      - name: Get Cooperated Issue Number
+        uses: actions/github-script@v6
+        id: get-cooperated-issue-number
+        with:
+          # デフォルトだとJSONエンコードされる。比較が面倒なので、プレーンな文字列で返すように変更。
+          result-encoding: string
+          script: |
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
+            if (targetComment) {
+              return targetComment.split('=')[1]
+            }
+            return 'not cooperated'
+
+      - name: Close Task
+        uses: atlassian/gajira-transition@master
+        with:
+          issue: ${{ steps.get-cooperated-issue-number.outputs.result }}
+          transition: "完了"
