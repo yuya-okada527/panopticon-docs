@@ -39,6 +39,7 @@ jobs:
 
       - name: Close Task
         uses: atlassian/gajira-transition@master
+        if: steps.get-cooperated-issue-number.outputs.result == 'not cooperated'
         with:
           issue: ${{ steps.get-cooperated-issue-number.outputs.result }}
           transition: "完了"
