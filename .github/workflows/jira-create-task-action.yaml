@@ -61,11 +61,3 @@ jobs:
               repo: context.repo.repo,
               body: 'JIRA-ISSUE-NUM=${{ steps.create-jira-issue.outputs.issue }}'
             })
-
-# TODO
-# 相互参照ができるようにする
-# 「GitHub -> Jira」と「Jira -> GitHub」
-# ラベル付与 -> Jira登録
-# ラベル付きIssue作成 -> Jira登録
-# ラベルを外す -> Jiraステータス変更(完了)
-# ラベル付きIssueをClose -> Jiraステータス変更(完了)
