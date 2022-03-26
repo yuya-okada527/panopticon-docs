@@ -34,7 +34,7 @@ jobs:
             });
             # console.log(typeof comments)
             console.log(comments)
-            console.log(JSON.stringify(comments, null, '\t'))
+            # console.log(JSON.stringify(comments, null, '\t'))
             # const matchedComment = JSON.parse(comments).find((comment))
             # const matchedComment = comments.find((comment) => {
             #   return /Matched/.test(comment.body)
