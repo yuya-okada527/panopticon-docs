@@ -50,6 +50,13 @@ jobs:
           # Jira側からGitHubのIssueを参照できるようにしておく
           description: ${{ steps.convert-url.outputs.url }}
 
+      - name: Move Task to In Progress
+        uses: atlassian/gajira-transition@master
+        if: steps.get-cooperated-issue-number.outputs.result == 'not cooperated'
+        with:
+          issue: ${{ steps.get-cooperated-issue-number.outputs.result }}
+          transition: "進行中"
+
       - name: Commnet Issue Number
         uses: actions/github-script@v6
         if: steps.get-cooperated-issue-number.outputs.result == 'not cooperated'
