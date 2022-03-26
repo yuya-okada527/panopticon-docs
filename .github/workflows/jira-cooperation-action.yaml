@@ -26,6 +26,8 @@ jobs:
         uses: actions/github-script@v6
         id: get-cooperated-issue-number
         with:
+          # デフォルトだとJSONエンコードされる。比較が面倒なので、プレーンな文字列で返すように変更。
+          result-encoding: string
           script: |
             const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
@@ -65,22 +67,3 @@ jobs:
               repo: context.repo.repo,
               body: 'JIRA-ISSUE-NUM=${{ steps.create-jira-issue.outputs.issue }}'
             })
-      # - name: コメントつけてみる
-      #   uses: actions/github-script@v6
-      #   with:
-      #     script: |
-      #       github.rest.issues.createComment({
-      #         issue_number: context.issue.number,
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         body: '👋 Thanks for reporting!'
-      #       })
-
-      # 方針
-      # 1. コメントを捜査して、JIRAの紐付けがあるかを検証
-      # 2. JIRAの紐付けがあれば、終了
-      # 3. なければ、JIRAのチケット登録
-
-      # うわ・・・なんか、Jira側の情報をGitHub上に持っておかないと。。
-      # - name: Find Jira Issue
-      #   uses: atlassian/gajira-find-issue-key@master
