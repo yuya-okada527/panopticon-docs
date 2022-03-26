@@ -44,7 +44,7 @@ jobs:
         if: steps.get-cooperated-issue-number.outputs.result != 'cooperated'
         with:
           # 付けたいチケット名を選択(jiraのAPItokenのlabelに合わせる)
-          project: panopticon
+          project: token-for-github
           # 課題タイプを指定
           issuetype: Task
           # issuesのタイトルが要約になるように設定
