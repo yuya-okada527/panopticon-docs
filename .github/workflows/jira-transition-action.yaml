@@ -26,6 +26,7 @@ jobs:
           # デフォルトだとJSONエンコードされる。比較が面倒なので、プレーンな文字列で返すように変更。
           result-encoding: string
           script: |
+            console.log("context.issue.number: " + context.issue.number)
             const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
