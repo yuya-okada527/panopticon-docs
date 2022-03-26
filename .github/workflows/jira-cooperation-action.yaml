@@ -32,8 +32,8 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            console.log(JSON.stringify(comments, null, '\t'))
-            const targetComment = JSON.parse(comments).data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
+            // console.log(JSON.stringify(comments, null, '\t'))
+            const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
             console.log('targetComment: ' + targetComment)
             // const matchedComment = JSON.parse(comments).find((comment))
             // const matchedComment = comments.find((comment) => {
