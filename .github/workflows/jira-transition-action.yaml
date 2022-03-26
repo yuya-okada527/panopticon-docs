@@ -7,8 +7,8 @@ on:
 jobs:
   complete-task:
     if: >-
-      contains(github.event.issue.labels.*.name, 'loadmap') || # closedの場合
-      github.event.label.name == 'loadmap' # unlabeledの場合
+      contains(github.event.issue.labels.*.name, 'loadmap') ||
+      github.event.label.name == 'loadmap'
     runs-on: ubuntu-latest
     steps:
       - name: Login
