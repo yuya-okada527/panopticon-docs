@@ -32,6 +32,7 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
+            console.log(comments)
             const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
             if (targetComment) {
               return targetComment.split('=')[1]
@@ -39,6 +40,7 @@ jobs:
             return 'cooperated'
 
       - name: Create Jira Issue
+        id: create-jira-issue
         uses: atlassian/gajira-create@v2.0.1
         # 連携済はスキップ
         if: steps.get-cooperated-issue-number.outputs.result != 'cooperated'
@@ -54,13 +56,14 @@ jobs:
 
       - name: Commnet Issue Number
         uses: actions/github-script@v6
+        if: steps.get-cooperated-issue-number.outputs.result != 'cooperated'
         with:
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'JIRA-ISSUE-NUM=${{ steps.get-cooperated-issue-number.outputs.result }}'
+              body: 'JIRA-ISSUE-NUM=${{ steps.create-jira-issue.outputs.issue }}'
             })
       # - name: コメントつけてみる
       #   uses: actions/github-script@v6
