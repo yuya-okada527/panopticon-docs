@@ -22,9 +22,9 @@ jobs:
       - name: Debug
         run: cat $GITHUB_EVENT_PATH
 
-      - name: Get Comments
+      - name: Get Cooperated Issue Number
         uses: actions/github-script@v6
-        id: return_context
+        id: get-cooperated-issue-number
         with:
           script: |
             const comments = await github.rest.issues.listComments({
@@ -32,15 +32,36 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            // console.log(JSON.stringify(comments, null, '\t'))
             const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
-            console.log('targetComment: ' + targetComment)
-            // const matchedComment = JSON.parse(comments).find((comment))
-            // const matchedComment = comments.find((comment) => {
-            //   return /Matched/.test(comment.body)
-            // })
-            //console.log(matchedComment.body)
+            if (targetComment) {
+              return targetComment.split('=')[1]
+            }
+            return 'cooperated'
 
+      - name: Create Jira Issue
+        uses: atlassian/gajira-create@v2.0.1
+        # 連携済はスキップ
+        if: steps.get-cooperated-issue-number.outputs.result != 'cooperated'
+        with:
+          # 付けたいチケット名を選択(jiraのAPItokenのlabelに合わせる)
+          project: panopticon
+          # 課題タイプを指定
+          issuetype: Task
+          # issuesのタイトルが要約になるように設定
+          summary: ${{ github.event.issue.title }}
+          # issuesの本文が説明になるように設定
+          description: ${{ github.event.issue.body }}
+
+      - name: Commnet Issue Number
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'JIRA-ISSUE-NUM=${{ steps.get-cooperated-issue-number.outputs.result }}'
+            })
       # - name: コメントつけてみる
       #   uses: actions/github-script@v6
       #   with:
