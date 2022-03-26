@@ -37,13 +37,13 @@ jobs:
             if (targetComment) {
               return targetComment.split('=')[1]
             }
-            return 'cooperated'
+            return 'not cooperated'
 
       - name: Create Jira Issue
         id: create-jira-issue
         uses: atlassian/gajira-create@v2.0.1
         # 連携済はスキップ
-        if: steps.get-cooperated-issue-number.outputs.result != 'cooperated'
+        if: steps.get-cooperated-issue-number.outputs.result == 'not cooperated'
         with:
           # 付けたいチケット名を選択(jiraのAPItokenのlabelに合わせる)
           project: PAN
@@ -56,7 +56,7 @@ jobs:
 
       - name: Commnet Issue Number
         uses: actions/github-script@v6
-        if: steps.get-cooperated-issue-number.outputs.result != 'cooperated'
+        if: steps.get-cooperated-issue-number.outputs.result == 'not cooperated'
         with:
           script: |
             github.rest.issues.createComment({
