@@ -19,9 +19,6 @@ jobs:
           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
-      - name: Debug
-        run: cat $GITHUB_EVENT_PATH
-
       - name: Get Cooperated Issue Number
         uses: actions/github-script@v6
         id: get-cooperated-issue-number
@@ -34,12 +31,15 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            console.log(comments)
             const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
             if (targetComment) {
               return targetComment.split('=')[1]
             }
             return 'not cooperated'
+
+      - name: Convert URL
+        id: convert-url
+        run: echo '::set-output name=url::https://github.com/yuya-okada527/panopticon/issues/${{ github.event.issue.number }}'
 
       - name: Create Jira Issue
         id: create-jira-issue
@@ -47,14 +47,11 @@ jobs:
         # 連携済はスキップ
         if: steps.get-cooperated-issue-number.outputs.result == 'not cooperated'
         with:
-          # 付けたいチケット名を選択(jiraのAPItokenのlabelに合わせる)
           project: PAN
-          # 課題タイプを指定
           issuetype: Task
-          # issuesのタイトルが要約になるように設定
           summary: ${{ github.event.issue.title }}
-          # issuesの本文が説明になるように設定
-          description: ${{ github.event.issue.body }}
+          # Jira側からGitHubのIssueを参照できるようにしておく
+          description: ${{ steps.convert-url.outputs.url }}
 
       - name: Commnet Issue Number
         uses: actions/github-script@v6
