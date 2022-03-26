@@ -32,6 +32,7 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
+            console.log(JSON.stringify(comments, null, '\t'))
             const targetComment = comments.data.map((data) => data.body).find((body) => /JIRA-ISSUE-NUM=/.test(body))
             if (targetComment) {
               return targetComment.split('=')[1]
