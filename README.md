@@ -6,11 +6,14 @@
 
 - 言語: Ruby3
 - フレームワーク: Ruby on Rails
-- データベース: MySQL
+- RDBMS: MySQL
 - ドキュメント: OpenAPI
 - テストフレームワーク: RSpec
 
 ### Front
+
+- 言語: TypeScript
+- フレームワーク: Nuxt.js
 
 ### Data Science
 
