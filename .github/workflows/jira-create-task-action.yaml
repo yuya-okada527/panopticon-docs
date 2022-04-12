@@ -45,7 +45,7 @@ jobs:
         if: steps.get-cooperated-issue-number.outputs.result == 'not cooperated'
         with:
           project: PAN
-          issuetype: "タスク"
+          issuetype: Task
           summary: ${{ github.event.issue.title }}
           # Jira側からGitHubのIssueを参照できるようにしておく
           description: ${{ steps.convert-url.outputs.url }}
