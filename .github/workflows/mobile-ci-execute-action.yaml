@@ -1,0 +1,31 @@
+name: Mobile CI Execution Action
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - mobile/**
+      - .github/workflows/mobile-ci-execute-action.yaml
+  pull_request:
+    branches:
+      - develop
+    paths:
+      - mobile/**
+      - .github/workflows/mobile-ci-execute-action.yaml
+
+jobs:
+  test:
+    name: unit test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: "2.10.5"
+      - name: pub get
+        run: make install
+        working-directory: ./mobile
+      - name: test
+        run: make testing
+        working-directory: ./mobile
