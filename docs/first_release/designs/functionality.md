@@ -22,3 +22,11 @@
 
 @endmindmap
 ```
+
+## 画面デザイン
+
+<div style="display: flex; flex-direction: row">
+  <img src="https://github.com/yuya-okada527/panopticon/blob/main/docs/images/login.png" width="240" alt="screenshot">
+  <img src="https://github.com/yuya-okada527/panopticon/blob/main/docs/images/projects.png" width="240" alt="screenshot">
+  <img src="https://github.com/yuya-okada527/panopticon/blob/main/docs/images/tasks.png" width="240" alt="screenshot">
+</div>
