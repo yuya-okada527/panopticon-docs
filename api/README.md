@@ -18,7 +18,7 @@
 
 - API: http://localhost:3000
 - DB クライアント: http://localhost:8888
-- Swagger UI: http://localhost:8081
+- Swagger UI: http://localhost:8011
 - Metabase: http://localhost:3300
 
 ## コマンド
