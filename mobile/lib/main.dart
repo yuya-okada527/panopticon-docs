@@ -11,7 +11,8 @@ void main() async {
   await dotenv.load();
   await Firebase.initializeApp();
   if (Environment.isLocal) {
-    await FirebaseAuth.instance.useAuthEmulator('localhost', Environment.firebaseEmulatorPort);
+    await FirebaseAuth.instance
+        .useAuthEmulator('localhost', Environment.firebaseEmulatorPort);
   }
   runApp(const PanopticonApp());
 }

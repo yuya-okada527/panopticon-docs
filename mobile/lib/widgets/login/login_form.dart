@@ -44,9 +44,16 @@ class _LoginFormState extends State<LoginForm> {
             height: 24,
           ),
           loginButton(
-            onPressed: () {
+            onPressed: () async {
               try {
                 final FirebaseAuth auth = FirebaseAuth.instance;
+                UserCredential result = await auth.signInWithEmailAndPassword(
+                  email: _mailAddress,
+                  password: _password,
+                );
+              } catch (e) {
+                // TODO implemets
+                print(e);
               }
             },
           ),
