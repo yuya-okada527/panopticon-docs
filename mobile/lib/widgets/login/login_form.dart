@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/login/submit_button.dart';
 import 'package:mobile/widgets/login/text_field.dart';
@@ -44,8 +45,9 @@ class _LoginFormState extends State<LoginForm> {
           ),
           loginButton(
             onPressed: () {
-              // ignore: avoid_print
-              print("pressed $_mailAddress, $_password");
+              try {
+                final FirebaseAuth auth = FirebaseAuth.instance;
+              }
             },
           ),
         ],
