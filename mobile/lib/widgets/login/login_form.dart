@@ -46,13 +46,15 @@ class _LoginFormState extends State<LoginForm> {
             onPressed: () async {
               try {
                 final FirebaseAuth auth = FirebaseAuth.instance;
-                UserCredential result = await auth.signInWithEmailAndPassword(
+                UserCredential credential = await auth.signInWithEmailAndPassword(
                   email: _emailAddreeeController.text,
                   password: _passwordController.text,
                 );
+                User user = credential.user!;
+                String idToken = await user.getIdToken();
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
-                    return const ProjectsPage();
+                    return ProjectsPage(token: idToken);
                   },
                 ));
                 setState(() {
