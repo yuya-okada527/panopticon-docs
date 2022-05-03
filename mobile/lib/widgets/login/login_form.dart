@@ -50,15 +50,17 @@ class _LoginFormState extends State<LoginForm> {
                   email: _emailAddreeeController.text,
                   password: _passwordController.text,
                 );
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  return const ProjectsPage();
-                }));
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const ProjectsPage();
+                  },
+                ));
                 setState(() {
                   _message = null;
                 });
               } on FirebaseAuthException catch (e) {
                 setState(() {
+                  _passwordController.text = "";
                   _message = e.message;
                 });
               }
