@@ -1,8 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile/pages/projects_page.dart';
 import 'package:mobile/widgets/login/submit_button.dart';
 import 'package:mobile/widgets/login/text_field.dart';
+import 'package:mobile/widgets/login/warn_message.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -12,9 +13,13 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  String _mailAddress = "";
-  String _password = "";
-  String _message = "";
+  final TextEditingController _emailAddreeeController = TextEditingController(
+    text: "",
+  );
+  final TextEditingController _passwordController = TextEditingController(
+    text: "",
+  );
+  String? _message;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,22 +29,14 @@ class _LoginFormState extends State<LoginForm> {
         children: <Widget>[
           textField(
             label: "メールアドレス",
-            onChanged: (String value) {
-              setState(() {
-                _mailAddress = value;
-              });
-            },
+            controller: _emailAddreeeController,
           ),
           const SizedBox(
             height: 24,
           ),
           textField(
             label: "パスワード",
-            onChanged: (String value) {
-              setState(() {
-                _password = value;
-              });
-            },
+            controller: _passwordController,
             obscureText: true,
           ),
           const SizedBox(
@@ -50,20 +47,24 @@ class _LoginFormState extends State<LoginForm> {
               try {
                 final FirebaseAuth auth = FirebaseAuth.instance;
                 UserCredential result = await auth.signInWithEmailAndPassword(
-                  email: _mailAddress,
-                  password: _password,
+                  email: _emailAddreeeController.text,
+                  password: _passwordController.text,
                 );
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) {
-                    return const ProjectsPage();
-                  })
-                );
-              } catch (e) {
-                // TODO implemets
-                print(e);
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const ProjectsPage();
+                }));
+                setState(() {
+                  _message = null;
+                });
+              } on FirebaseAuthException catch (e) {
+                setState(() {
+                  _message = e.message;
+                });
               }
             },
           ),
+          warnMessage(_message),
         ],
       ),
     );

@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 
 Widget textField({
+  required TextEditingController controller,
   required String label,
-  required Function onChanged,
   bool obscureText = false,
 }) {
-  return TextField(
+  return TextFormField(
     decoration: InputDecoration(
       labelText: label,
       border: const OutlineInputBorder(),
     ),
     obscureText: obscureText,
     autocorrect: false,
-    onChanged: (String value) {
-      onChanged(value);
-    },
+    controller: controller,
   );
 }
