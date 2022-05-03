@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/pages/projects_page.dart';
 import 'package:mobile/widgets/login/submit_button.dart';
 import 'package:mobile/widgets/login/text_field.dart';
 
@@ -13,6 +14,7 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   String _mailAddress = "";
   String _password = "";
+  String _message = "";
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,6 +52,11 @@ class _LoginFormState extends State<LoginForm> {
                 UserCredential result = await auth.signInWithEmailAndPassword(
                   email: _mailAddress,
                   password: _password,
+                );
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) {
+                    return const ProjectsPage();
+                  })
                 );
               } catch (e) {
                 // TODO implemets
